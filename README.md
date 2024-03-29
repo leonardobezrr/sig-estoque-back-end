@@ -4,18 +4,24 @@ Bem-vindo ao repositório do Sig-Estoque! Este projeto é focado no desenvolvime
 
 ## Tecnologias Utilizadas
 
-- **Node.js:** Plataforma de desenvolvimento para construção de aplicações server-side utilizando JavaScript.
+- **Node.js:** Plataforma de desenvolvimento para construção de aplicações server-side utilizando TypeScript.
 - **Fastify:** Framework web extremamente rápido e eficiente para Node.js.
 - **Prisma ORM:** Ferramenta moderna e poderosa para interagir com bancos de dados, oferecendo um conjunto de APIs robusto e fácil de usar.
+
+## Aprendizado
+
+- **Crash Course:** Um tutorial recomendado para aprender sobre Node.js, Fastify e Prisma ORM é o [Build a RESTful API with Fastify, Prisma & TypeScript](https://www.youtube.com/watch?v=LMoMHP44-xM).
 
 ## Instalação
 
 1. Clone este repositório:
+
    ```bash
    git clone https://github.com/seu-usuario/sig-estoque.git
    ```
 
 2. Instale as dependências:
+
    ```bash
    cd sig-estoque
    npm install
