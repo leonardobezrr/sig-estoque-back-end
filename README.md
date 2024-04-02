@@ -17,7 +17,7 @@ Bem-vindo ao repositório do Sig-Estoque! Este projeto é focado no desenvolvime
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/sig-estoque.git
+   git clone https://github.com/seu-usuario/sig-estoque-back-end.git
    ```
 
 2. Instale as dependências:
