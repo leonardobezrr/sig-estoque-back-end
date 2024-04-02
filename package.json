@@ -1,0 +1,29 @@
+{
+  "name": "sig-estoque-back-end",
+  "version": "1.0.0",
+  "description": "Bem-vindo ao repositório do Sig-Estoque! Este projeto é focado no desenvolvimento do back-end para um sistema de controle de estoque, utilizando tecnologias modernas para garantir eficiência, desempenho e escalabilidade.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.2",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2",
+    "zod": "^3.22.4"
+  }
+}
