@@ -96,17 +96,21 @@ RF026 - Creditar estoque | O sistema deve creditar os produtos relacionados a um
 
 Abaixo apresentamos o modelo conceitual usando o **YUML**.
 
- ```mermaid
+```mermaid
 classDiagram    
+
     Usuário <|-- Gerente
     Usuário <|-- Funcionário
+    ItemCompra "1. *" -- "1" Compra
     Compra "0. *" -- "1" Usuário
     Venda "0. *" -- "1" Usuário
-    Fornecedor "1" -- "0. *" Compra
+    Fornecedor "1" -- "1. *" ItemCompra
     Item  "1. *" -- "0. *" Venda
     Produto "1" -- "0. *" Compra
     Item "0. *" -- "1" Produto
+    Item "" <|-- "" ItemCompra 
 
+ 
     class Usuário {
         
         -int id
@@ -134,6 +138,7 @@ classDiagram
         -int id
     }
     class Compra {
+
         -int id
         -int num_nf
         -int quantidade
@@ -152,7 +157,11 @@ classDiagram
         +EditarCompra(compra Compra) void
         +ConsultarCompra(compra Compra) void
     }
+    class ItemCompra {
+        -int id
+    }
     class Fornecedor {
+
         -int id
         -string nome_social
         -string nome_empresa
@@ -175,21 +184,25 @@ classDiagram
         +ConsultarFornecedor(fornecedor Fornecedor) void
     }
     class Produto {
+
         -int id
         -string descricao
         -string nome
         -double preco
         -int qtd_estoque
+        -string lote
 
         +setDescricao(string descricao) void 
         +setNome(string nome) void
         +setPreco(double preco) void
         +setQtd_estoque(int qtd_estoque) void
+        +setLote(string lote) void
 
         +getDescricap() string 
         +getNome() string 
         +getPreco() double
         +getQtd_estoque() int
+        +getLote() string 
 
         +IncluirProduto(produto Produto) void
         +ExcluirProduto(produto Produto) void
@@ -197,6 +210,7 @@ classDiagram
         +ConsultarProduto(produto Produto) void
     }
     class Item {
+
         -int id
         -int quantidade
         -double preco
@@ -213,6 +227,7 @@ classDiagram
         +ConsultarItem(item Item) void
     }
     class Venda {
+
         -int id
         -int data_venda
         -int num_nf

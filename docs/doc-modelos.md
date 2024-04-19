@@ -8,15 +8,19 @@ Neste documento temos o modelo Conceitual (UML) ou de Dados (Entidade-Relacionam
 
 ```mermaid
 classDiagram    
+
     Usuário <|-- Gerente
     Usuário <|-- Funcionário
+    ItemCompra "1. *" -- "1" Compra
     Compra "0. *" -- "1" Usuário
     Venda "0. *" -- "1" Usuário
-    Fornecedor "1" -- "0. *" Compra
+    Fornecedor "1" -- "1. *" ItemCompra
     Item  "1. *" -- "0. *" Venda
     Produto "1" -- "0. *" Compra
     Item "0. *" -- "1" Produto
+    Item "" <|-- "" ItemCompra 
 
+ 
     class Usuário {
         
         -int id
@@ -63,6 +67,9 @@ classDiagram
         +EditarCompra(compra Compra) void
         +ConsultarCompra(compra Compra) void
     }
+    class ItemCompra {
+        -int id
+    }
     class Fornecedor {
 
         -int id
@@ -93,16 +100,19 @@ classDiagram
         -string nome
         -double preco
         -int qtd_estoque
+        -string lote
 
         +setDescricao(string descricao) void 
         +setNome(string nome) void
         +setPreco(double preco) void
         +setQtd_estoque(int qtd_estoque) void
+        +setLote(string lote) void
 
         +getDescricap() string 
         +getNome() string 
         +getPreco() double
         +getQtd_estoque() int
+        +getLote() string 
 
         +IncluirProduto(produto Produto) void
         +ExcluirProduto(produto Produto) void
