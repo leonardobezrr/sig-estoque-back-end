@@ -6,9 +6,9 @@ Este plano de iteração será usando no semestre letivo 2024.1.
 
 Iteração | Data início | Data Final | Apresentação | Líder Técnico  | Detalhes
 -------- | ----------- | ---------- | ------------ | -------  | -------
-It0      | 27/02/2024  | 14/03/2024 |      --      | Líder 1  | Planejamento e Estudo dos Documentos e Definição de Tecnologias dos projetos. Criação dos Documentos: Documento de Visão, Modelo Conceitual, Lista de User Stories, Plano de Iteração e Plano de Release,  Estrutura do Projeto (código base do projeto), Detalhar User Stories para a Iteração 1, Implementar User Story Base.
-It1      | 	05/04/2024  | 18/04/2024 | 18/04/2024   | Líder 2 | Configuração do projeto, Schemas do banco de dados, Autenticação e crud de usuários, Protótipos no figma, Tela inicial (home), Tela de login, Dashboard simples de gerente e funcionários e realização de teste.
-It2      | 19/04/2024  | 09/05/2024 | 09/05/2024   | Líder 3 | 
+It0      | 27/02/2024  | 14/03/2024 |      --      | Ricardo  | Planejamento e Estudo dos Documentos e Definição de Tecnologias dos projetos. Criação dos Documentos: Documento de Visão, Modelo Conceitual, Lista de User Stories, Plano de Iteração e Plano de Release,  Estrutura do Projeto (código base do projeto), Detalhar User Stories para a Iteração 1, Implementar User Story Base.
+It1      | 	05/04/2024  | 18/04/2024 | 18/04/2024   | Ricardo | Planejamento e Estudo dos Documentos e Definição de Tecnologias dos projetos. Criação dos Documentos: Documento de Visão, Modelo Conceitual, Lista de User Stories, Plano de Iteração e Plano de Release,  Estrutura do Projeto (código base do projeto), Detalhar User Stories para a Iteração 1, Implementar User Story Base.
+It2      | 19/04/2024  | 09/05/2024 | 09/05/2024   | Luis | Configuração do projeto, Schemas do banco de dados, Autenticação e crud de usuários, Protótipos no figma, Tela inicial (home), Tela de login, Dashboard simples de gerente e funcionários e realização de teste.
 It3      | 10/05/2024  | 30/05/2024 | 30/05/2024   | Líder 4 | 
 It4      | 31/05/2024  | 20/06/2024 | 20/06/2024   | Líder 5 | 
 It5      | 21/06/2024  | 11/07/2024 | 11/07/2024   | Líder 6 | 
