@@ -26,10 +26,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 5 h                                 | 
 | **Tempo Gasto (real):**   | 2 h                                 | 
 | **Tamanho Funcional**     | 8 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | Luís                                | 
+| **Desenvolvedor**         | Charles, Breno e Ricardo            | 
+| **Revisor**               | Gabriel                             | 
+| **Testador**              | Leonardo                            | 
 
 
 
@@ -58,10 +58,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | Luís                                | 
+| **Desenvolvedor**         | Charles, Breno e Ricardo            | 
+| **Revisor**               | Gabriel                             | 
+| **Testador**              | Leonardo                            | 
 
 
 
@@ -91,10 +91,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | Luís                                | 
+| **Desenvolvedor**         | Charles, Breno e Ricardo            | 
+| **Revisor**               | Gabriel                             | 
+| **Testador**              | Leonardo                            | 
 
 
 | Testes de Aceitação (TA) |  |
@@ -128,10 +128,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | -                                   | 
+| **Desenvolvedor**         | -                                   | 
+| **Revisor**               | -                                   | 
+| **Testador**              | -                                   | 
 
 
 
@@ -165,10 +165,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | Luís                                | 
+| **Desenvolvedor**         | Charles, Breno e Ricardo            | 
+| **Revisor**               | Gabriel                             | 
+| **Testador**              | Leonardo                            | 
 
 
 
@@ -195,10 +195,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | -                                   | 
+| **Desenvolvedor**         | -                                   | 
+| **Revisor**               | -                                   | 
+| **Testador**              | -                                   | 
 
 
 
@@ -225,10 +225,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | -                                   | 
+| **Desenvolvedor**         | -                                   | 
+| **Revisor**               | -                                   | 
+| **Testador**              | -                                   | 
 
 
 
@@ -255,10 +255,10 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | **Estimativa**            | 8 h                                 | 
 | **Tempo Gasto (real):**   | 10 h                                | 
 | **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | -                             | 
-| **Desenvolvedor**         | Gabriel, Breno e Ricardo                                  | 
-| **Revisor**               | -                               | 
-| **Testador**              | -                                | 
+| **Analista**              | -                                   | 
+| **Desenvolvedor**         | -                                   | 
+| **Revisor**               | -                                   | 
+| **Testador**              | -                                   | 
 
 
 
