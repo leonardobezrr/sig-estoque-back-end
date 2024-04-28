@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  fitcheck-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=1
+      - POSTGRESQL_DATABASE=sig-storage
