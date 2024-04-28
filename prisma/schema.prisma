@@ -12,3 +12,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id                Int      @id @default(autoincrement())
+  name              String   @db.VarChar(255)
+  description       String?
+  price             Float
+  quantity_in_stock Int
+  batch             String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
