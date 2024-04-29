@@ -5,6 +5,8 @@ interface CreateProductServiceRequest {
     name: string;
     description: string;
     price: number;
+    quantity_in_stock: number,
+    batch: string
 }
 
 interface CreateProductServiceResponse {
@@ -16,12 +18,14 @@ export class CreateProductService {
     }
 
     async handle({
-        name, description, price
+        name, description, price, quantity_in_stock, batch
     }: CreateProductServiceRequest): Promise<CreateProductServiceResponse> {
         const product = await this.productRepository.create({
             name,
             description,
-            price
+            price,
+            quantity_in_stock,
+            batch
         });
 
         return {
