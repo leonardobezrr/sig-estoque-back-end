@@ -5,4 +5,5 @@ export interface ProductRepository {
     findMany(): Promise<Product[]>
     findManyByName(name: string): Promise<Product[]>
     findById(id: string): Promise<Product | null>
+    update(id: string, data: Prisma.ProductUpdateInput): Promise<Product | null>
 }
