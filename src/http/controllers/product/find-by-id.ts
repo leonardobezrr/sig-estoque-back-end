@@ -4,8 +4,10 @@ import { makeGetProductByIdService } from "../../../services/factories/make-get-
 export async function findById(request: FastifyRequest, reply: FastifyReply) {
     const getProductByIdService = makeGetProductByIdService();
 
+    const { id } = request.params as { id: string };
+
     const { product } = await getProductByIdService.execute({
-        productId: (request.params as Record<string, string>).id
+        productId: id
     });
 
     reply.code(200).send({
