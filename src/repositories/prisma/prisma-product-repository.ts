@@ -27,7 +27,7 @@ export class PrismaProductRepository implements ProductRepository {
         return prisma.product.findUnique({ where: { id } });
     }
 
-    async update(id: string, data: Prisma.ProductUpdateInput) {
+    async patch(id: string, data: Prisma.ProductUpdateInput) {
         return prisma.product.update({
             where: { id },
             data
