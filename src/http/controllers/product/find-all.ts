@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { makeGetProductsDataService } from "../../../services/factories/make-get-products-data";
+import { makeGetProductsDataService } from "../../../services/factories/make-get-products-data-service";
 
 export async function findMany(request: FastifyRequest, reply: FastifyReply) {
     const getProductsDataService = makeGetProductsDataService();
