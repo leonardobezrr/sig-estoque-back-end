@@ -33,4 +33,13 @@ export class PrismaProductRepository implements ProductRepository {
             data
         });
     }
+
+    async inactivate(id: string) {
+        return prisma.product.update({
+            where: { id },
+            data: {
+                is_active: false
+            }
+        });
+    }
 }
