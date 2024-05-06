@@ -85,6 +85,7 @@ model Product {
   price             Float
   quantity_in_stock Int?
   batch             String?
+  is_active         Boolean? @default(true)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   Item              Item[]
