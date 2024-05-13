@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { makeGetProductByIdService } from "../../../services/factories/make-get-product-by-id-service";
+import { makeGetProductByIdService } from "../../../services/factories/product/make-get-product-by-id-service";
 
 export async function findById(request: FastifyRequest, reply: FastifyReply) {
     const getProductByIdService = makeGetProductByIdService();

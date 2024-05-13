@@ -1,4 +1,4 @@
-import { ProductRepository } from "../repositories/product-repository";
+import { ProductRepository } from "../../repositories/product-repository";
 
 interface InactivateProductServiceRequest {
     productId: string;
