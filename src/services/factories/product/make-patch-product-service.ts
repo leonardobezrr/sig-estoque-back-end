@@ -1,5 +1,5 @@
-import { PrismaProductRepository } from "../../repositories/prisma/prisma-product-repository";
-import { PatchProductService } from "../patch-product";
+import { PrismaProductRepository } from "../../../repositories/prisma/prisma-product-repository";
+import { PatchProductService } from "../../product/patch-product";
 
 export function makePatchProductService() {
     const productRepository = new PrismaProductRepository();

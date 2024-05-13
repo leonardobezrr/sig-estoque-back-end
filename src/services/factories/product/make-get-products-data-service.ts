@@ -1,5 +1,5 @@
-import { PrismaProductRepository } from "../../repositories/prisma/prisma-product-repository";
-import { GetProductsDataService } from "../get-products-data";
+import { PrismaProductRepository } from "../../../repositories/prisma/prisma-product-repository";
+import { GetProductsDataService } from "../../product/get-products-data";
 
 export function makeGetProductsDataService() {
     const prismaProductRepository = new PrismaProductRepository();

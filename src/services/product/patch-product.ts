@@ -1,5 +1,5 @@
 import { Product } from "@prisma/client";
-import { ProductRepository } from "../repositories/product-repository";
+import { ProductRepository } from "../../repositories/product-repository";
 
 interface PatchProductServiceRequest {
     id: string;

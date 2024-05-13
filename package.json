@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.2",
     "prisma": "^5.13.0",
     "tsup": "^8.0.2",
@@ -23,9 +24,13 @@
     "typescript": "^5.4.3"
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/jwt": "^8.0.1",
     "@prisma/client": "^5.13.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
+    "pg": "^8.11.5",
     "zod": "^3.23.5"
   }
 }

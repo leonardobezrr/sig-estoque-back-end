@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { makePatchProductService } from "../../../services/factories/make-patch-product-service";
+import { makePatchProductService } from "../../../services/factories/product/make-patch-product-service";
 
 export async function patch(request: FastifyRequest, reply: FastifyReply) {
     const patchProdutctBodySchema = z.object({
