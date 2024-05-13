@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makeCreateProductService } from "../../../services/factories/product/make-create-product-service";
 
-export async function create(request: FastifyRequest, reply: FastifyReply) {
+export async function createProduct(request: FastifyRequest, reply: FastifyReply) {
     const createProdutctBodySchema = z.object({
         name: z.string(),
         description: z.string(),
