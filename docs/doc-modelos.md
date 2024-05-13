@@ -8,15 +8,19 @@ Neste documento temos o modelo Conceitual (UML) ou de Dados (Entidade-Relacionam
 
 ```mermaid
 classDiagram    
+
     Usuário <|-- Gerente
     Usuário <|-- Funcionário
+    ItemCompra "1. *" -- "1" Compra
     Compra "0. *" -- "1" Usuário
     Venda "0. *" -- "1" Usuário
-    Fornecedor "1" -- "0. *" Compra
+    Fornecedor "1" -- "1. *" ItemCompra
     Item  "1. *" -- "0. *" Venda
     Produto "1" -- "0. *" Compra
     Item "0. *" -- "1" Produto
+    Item "" <|-- "" ItemCompra 
 
+ 
     class Usuário {
         
         -int id
@@ -63,6 +67,9 @@ classDiagram
         +EditarCompra(compra Compra) void
         +ConsultarCompra(compra Compra) void
     }
+    class ItemCompra {
+        -int id
+    }
     class Fornecedor {
 
         -int id
@@ -93,16 +100,19 @@ classDiagram
         -string nome
         -double preco
         -int qtd_estoque
+        -string lote
 
         +setDescricao(string descricao) void 
         +setNome(string nome) void
         +setPreco(double preco) void
         +setQtd_estoque(int qtd_estoque) void
+        +setLote(string lote) void
 
         +getDescricap() string 
         +getNome() string 
         +getPreco() double
         +getQtd_estoque() int
+        +getLote() string 
 
         +IncluirProduto(produto Produto) void
         +ExcluirProduto(produto Produto) void
@@ -155,6 +165,7 @@ Descrição sucinta das entidades presentes no sistema.
 | Funcionário | Entidade que representa um funcionário herdando a entidade usuário. |
 | Gerente | Entidade que representa um gerente herdando a entidade usuário. |
 | Compra | Entidade que representa uma compra com os seguintes atributos: id, num_nf, quantidade, valor, e seus métodos são: setNum_nf(num_nf), setQuantidade(quantidade), setValor(valor), getNum_nf(), getQuantidade(), getValor(), IncluirCompra(compra Compra), ExcluirCompra(compra Compra), EditarCompra(compra Compra), ConsultarCompra(compra Compra). |
+| ItemCompra | Entidade que representa um Item de uma compra herdando a entidade Item. | 
 | Fornecedor | Entidade que representa um fornecedor com os seguintes atributos: id, nome_social, nome_empresa, telefone, CNPJ, e seus métodos são: setNome_social(nome_social), setNome_empresa(nome_empresa), setTelefone(telefone), setCNPJ(CNPJ), getNome_social(), getNome_empresa(), getTelefone(), getCNPJ(), IncluirFornecedor(fornecedor Fornecedor), ExcluirFornecedor(fornecedor Fornecedor), EditarFornecedor(fornecedor Fornecedor), ConsultarFornecedor(fornecedor Fornecedor). |
 | Produto | Entidade que representa um produto com os seguintes atributos: id, descricao, nome, preco, qtd_estoque, e seus métodos são: setDescricao(descricao), setNome(nome), setPreco(preco), setQtd_estoque(qtd_estoque), getDescricao(), getNome(), getPreco(), getQtd_estoque(), IncluirProduto(produto Produto), ExcluirProduto(produto Produto), EditarProduto(produto Produto), ConsultarProduto(produto Produto). |
 | Item | Entidade que representa um item com os seguintes atributos: id, quantidade, preco, e seus métodos são: setQuantidade(quantidade), setPreco(preco), getQuantidade(), getPreco(), IncluirItem(item Item), ExcluirItem(item Item), EditarItem(item Item), ConsultarItem(item Item). |

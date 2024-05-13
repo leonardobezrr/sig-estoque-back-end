@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ROLE {
+  EMPLOYEE
+  MANAGER
+}
+
+model User {
+  id            String     @id @default(uuid())
+  name          String
+  email         String     @unique
+  password_hash String
+  Sale          Sale[]
+  Purchase      Purchase[]
+  Employee      Employee[]
+  Manager       Manager[]
+
+  @@map("users")
+}
+
+model Employee {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@map("employees")
+}
+
+model Manager {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  @@map("managers")
+}
+
+model Sale {
+  id        String   @id @default(uuid())
+  sale_date DateTime @default(now())
+  nf_number String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  Item   Item[]
+
+  @@map("sales")
+}
+
+model Purchase {
+  id        String @id @default(uuid())
+  nf_number String
+  quantity  Int
+  value     Float
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  supplierId String
+
+  Item Item[]
+
+  @@map("purchases")
+}
+
+model Product {
+  id                String   @id @default(uuid())
+  name              String   @db.VarChar(255)
+  description       String?
+  price             Float
+  quantity_in_stock Int?
+  batch             String?
+  is_active         Boolean? @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  Item              Item[]
+
+  @@map("products")
+}
+
+model Item {
+  id       String @id @default(uuid())
+  quantity Int
+  value    Float
+
+  sale   Sale   @relation(fields: [saleId], references: [id])
+  saleId String
+
+  purchase   Purchase @relation(fields: [purchaseId], references: [id])
+  purchaseId String
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  @@map("items")
+}
+
+model Supplier {
+  id           String     @id @default(uuid())
+  social_name  String
+  company_name String
+  phone_number String
+  cnpj         String
+  Purchase     Purchase[]
+
+  @@map("suppliers")
+}

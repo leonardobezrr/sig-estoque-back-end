@@ -9,8 +9,8 @@ Membro     |     Papel   |   E-mail   |
 ---------  | ----------- | ---------- |
 Breno    | Desenvolvedor  | breno.porfirio.079@ufrn.edu.br
 Leonardo     | Cliente | Leonardobezerra05@gmail.com
-Ricardo         | Desenvolvedor  | ricardo.alencar.122@ufrn.edu.br
-Luís      | Gerente | Luisf311220@gmail.com
+Ricardo         | Gerente  | ricardo.alencar.122@ufrn.edu.br
+Luís      | Desenvolvedor | Luisf311220@gmail.com
 Gabriel      | Desenvolvedor | gabriel.lima.112@ufrn.edu.br
 Charles      | Desenvolvedor | charleseduardofaria@gmail.com
 
@@ -18,12 +18,12 @@ Charles      | Desenvolvedor | charleseduardofaria@gmail.com
 
 Membro     |     Competências   |
 ---------  | ----------- |
-Breno    | HTML, CSS, Javascript, React, Next, Typescript, Prisma e Figma. |
+Breno    | HTML, CSS, Javascript, React, Next, Typescript, Node, Prisma e Figma. |
 Leonardo     | HTML, CSS, JavaScript, React, Next, Golang, PostgreSQL, Python. |
-Ricardo        | HTML, CSS, JavaScript, React, Golang, MySQL, PostgreSQL, PHP, WordPress, curso ténico em informática. |
+Ricardo        | HTML, CSS, JavaScript, React, Golang, Node, MySQL, PostgreSQL, PHP, WordPress. |
 Luís       | HTML, CSS, Javascript , C, C++, QT creator, QT designer. |
 Gabriel       | HTML, CSS, JavaScript, React, Next, Vue.js, UI/UX design, Figma, MariaDB, python, C, Angular, TypeScript. |
-Charles      | Java, Spring Boot, Laravel, HTML, CSS, JQuery, Postgres, MySQL, Figma, Modelagem de Dados |
+Charles      | Java, Spring Boot, Laravel, Node, HTML, CSS, JQuery, Postgres, MySQL, Figma, Modelagem de Dados |
 
 
 ## Perfis dos Usuários
@@ -50,7 +50,7 @@ RF004 - Visualizar usuários     |  Funcionalidade exclusiva do administrador do
 
 Requisito                                 | Descrição   | Ator |
 ---------                                 | ----------- | ---------- |
-RF005 - Cadastrar produtos | Funcionalidade destinada ao funcionário do sistema possibilitando o cadastro de produtos no sistema | Funcianário |
+RF005 - Cadastrar produtos | Funcionalidade destinada ao funcionário do sistema possibilitando o cadastro de produtos no sistema e quantidade de estoque | Funcianário |
 RF006 - Excluir produtos | Funcionalidade destinada ao funcionário do sistema possibilitando a exclusão de produtos do sistema. | Funcianário |
 RF007 - Editar produtos | Funcionalidade destinada ao funcionário do sistema possibilitando a editação de produtos do sistema. | Funcianário |
 RF008 - Visualizar produtos | Funcionalidade destinada ao funcionário do sistema possibilitando a visualização de produtos do sistema | Funcianário |
@@ -71,22 +71,46 @@ RF014 - Registrar Nota Fiscal Eletrônica |  Registrar a Nota Fiscal recebida pe
 RF015 - Gerar Log | O requisito funcional de número 14 é incluído, porém, são adicionados a ele os dados do gerenciamento de produtos e do registro de entradas, a fim de criar um arquivo mais amplo que o RF014, permitindo, assim, visualizar as informações a partir de um escopo geral, diferente do requisito citado anteriormente, que é focado apenas nas entradas.
 RF016 - Registrar compra |  O funcionário irá informar o gerente da falta de algum material/produto, o qual irá realizar a compra do mesmo para reabastecimento do estoque, em seguida, caberá ao funcionário dar baixa dos itens no sistema. | Funcionário |
 
+### Gerenciar vendas
+
+Requisito                                 | Descrição   | Ator |
+---------                                 | ----------- | ---------- |
+RF017 - Cadastrar vendas | Possibilidade de cadastrar vendas, guardando seus dados para visualizar futuramente. | Funcionário |
+RF018 - Excluir vendas | Possibilidade de excluir vendas do sistema. | Funcionário |
+RF019 - Editar vendas | Possibilidade de editar vendas do sistema. | Funcionário |
+RF020 - Visualizar vendas | Possibilidade de visualizar vendas do sistema. | Funcionário |
+RF021 - Debitar estoque | O sistema deve debitar os produtos relacionados a uma venda. | Funcionário |
+
+### Gerenciar compras
+
+Requisito                                 | Descrição   | Ator |
+---------                                 | ----------- | ---------- |
+RF022 - Cadastrar compras | Possibilidade de cadastrar compras vinculadas a um fornecedor. | Funcionário |
+RF023 - Excluir compras | Possibilidade de excluir compras do sistema. | Funcionário |
+RF024 - Editar compras | Possibilidade de editar compras do sistema. | Funcionário |
+RF025 - Visualizar compras | Possibilidade de visualizar compras do sistema. | Funcionário |
+RF026 - Creditar estoque | O sistema deve creditar os produtos relacionados a uma compra. | Funcionário |
+
 
 ### Modelo Conceitual
 
 Abaixo apresentamos o modelo conceitual usando o **YUML**.
 
- ```mermaid
+```mermaid
 classDiagram    
+
     Usuário <|-- Gerente
     Usuário <|-- Funcionário
+    ItemCompra "1. *" -- "1" Compra
     Compra "0. *" -- "1" Usuário
     Venda "0. *" -- "1" Usuário
-    Fornecedor "1" -- "0. *" Compra
+    Fornecedor "1" -- "1. *" ItemCompra
     Item  "1. *" -- "0. *" Venda
     Produto "1" -- "0. *" Compra
     Item "0. *" -- "1" Produto
+    Item "" <|-- "" ItemCompra 
 
+ 
     class Usuário {
         
         -int id
@@ -114,6 +138,7 @@ classDiagram
         -int id
     }
     class Compra {
+
         -int id
         -int num_nf
         -int quantidade
@@ -132,7 +157,11 @@ classDiagram
         +EditarCompra(compra Compra) void
         +ConsultarCompra(compra Compra) void
     }
+    class ItemCompra {
+        -int id
+    }
     class Fornecedor {
+
         -int id
         -string nome_social
         -string nome_empresa
@@ -155,21 +184,25 @@ classDiagram
         +ConsultarFornecedor(fornecedor Fornecedor) void
     }
     class Produto {
+
         -int id
         -string descricao
         -string nome
         -double preco
         -int qtd_estoque
+        -string lote
 
         +setDescricao(string descricao) void 
         +setNome(string nome) void
         +setPreco(double preco) void
         +setQtd_estoque(int qtd_estoque) void
+        +setLote(string lote) void
 
         +getDescricap() string 
         +getNome() string 
         +getPreco() double
         +getQtd_estoque() int
+        +getLote() string 
 
         +IncluirProduto(produto Produto) void
         +ExcluirProduto(produto Produto) void
@@ -177,6 +210,7 @@ classDiagram
         +ConsultarProduto(produto Produto) void
     }
     class Item {
+
         -int id
         -int quantidade
         -double preco
@@ -193,6 +227,7 @@ classDiagram
         +ConsultarItem(item Item) void
     }
     class Venda {
+
         -int id
         -int data_venda
         -int num_nf
@@ -232,8 +267,8 @@ Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
 19/03/2024 |Máquinas incapazes de fornecer os recursos necessários para o funcionamento do sistema | Média | Todos | Vigente | Recomendar a compra de novos dispositivos capazes de fornecer os recursos necessários para o funcionamento pleno do sistema. |
 19/03/2024 | Divisão de tarefas mal sucedida | Baixa | Gerente | Vigente | Acompanhar de perto o desenvolvimento de cada membro da equipe |
 19/03/2024 | Implementação de protótipo com as tecnologias | Alto | Todos | Resolvido | Encontrar tutorial com a maioria da tecnologia e implementar um caso base do sistema |
-19/03/2024 | Atrasos no cronograma | Média | Todos | Em Processo | Este risco pode ser causado por uma série de fatores, como a falta de recursos, a falta de planejamento ou a falta de comunicação entre os membros da equipe. Para mitigar este risco, é importante ter um cronograma realista e flexível, e garantir que todos os membros da equipe estejam alinhados com os objetivos do projeto.|
-19/03/2024 | Risco de qualidade do produto | Alto | Todos | Em Processo | Este risco pode ser causado por uma série de fatores, como a falta de atenção aos detalhes ou a falta de testes adequados. Para mitigar este risco, é importante ter uma equipe experiente, garantir que os membros da equipe estejam focados na qualidade do produto e realizar testes rigorosos. |
-19/03/2024 | Insatisfação do cliente | Alto | Todos | Em Processo | Este risco pode ser causado por uma série de fatores, como a falta de comunicação com o cliente, a entrega de um produto que não atende às expectativas do cliente ou a falta de suporte pós-venda. Para mitigar este risco, é importante manter uma comunicação aberta com o cliente, garantir que o produto atenda às expectativas do cliente e oferecer um bom suporte pós-venda. |
+19/03/2024 | Atrasos no cronograma | Média | Todos | Vigente | Este risco pode ser causado por uma série de fatores, como a falta de recursos, a falta de planejamento ou a falta de comunicação entre os membros da equipe. Para mitigar este risco, é importante ter um cronograma realista e flexível, e garantir que todos os membros da equipe estejam alinhados com os objetivos do projeto.|
+19/03/2024 | Risco de qualidade do produto | Alto | Todos | Vigente | Este risco pode ser causado por uma série de fatores, como a falta de atenção aos detalhes ou a falta de testes adequados. Para mitigar este risco, é importante ter uma equipe experiente, garantir que os membros da equipe estejam focados na qualidade do produto e realizar testes rigorosos. |
+19/03/2024 | Insatisfação do cliente | Alto | Todos | Vigente | Este risco pode ser causado por uma série de fatores, como a falta de comunicação com o cliente, a entrega de um produto que não atende às expectativas do cliente ou a falta de suporte pós-venda. Para mitigar este risco, é importante manter uma comunicação aberta com o cliente, garantir que o produto atenda às expectativas do cliente e oferecer um bom suporte pós-venda. |
 
 ### Referências
