@@ -14,9 +14,9 @@ export async function findManagerById(
   try {
     const { id } = findManagerByIdSchema.parse(request.params);
 
-    const fetchAdminByIdService = makeFindManagerByIdService();
+    const fetchManagerByIdService = makeFindManagerByIdService();
 
-    const { manager } = await fetchAdminByIdService.execute({ id });
+    const { manager } = await fetchManagerByIdService.execute({ id });
 
     return reply.status(200).send({ manager });
   } catch (error) {

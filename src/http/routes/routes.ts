@@ -11,6 +11,10 @@ import { verifyUserRole } from "../middlewares/verify-user-role";
 import { fetchAllManagers } from "../controllers/manager/fetch-all";
 import { findManagerById } from "../controllers/manager/find-by-id";
 import { updateManager } from "../controllers/manager/update";
+import { createEmployee } from "../controllers/employee/create";
+import { fetchAllEmployees } from "../controllers/employee/fetch-all";
+import { findEmployeeById } from "../controllers/employee/find-by-id";
+import { updateEmployee } from "../controllers/employee/update";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -30,4 +34,10 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/managers", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllManagers);
     app.get("/manager/:id", { onRequest: [verifyUserRole("MANAGER")] }, findManagerById);
     app.put("/manager/update/:id", { onRequest: [verifyUserRole("MANAGER")] }, updateManager);
+
+    // employees
+    app.post("/employees", { onRequest: [verifyUserRole("MANAGER")] }, createEmployee);
+    app.get("/employees", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllEmployees);
+    app.get("/employee/:id", { onRequest: [verifyUserRole("MANAGER")] }, findEmployeeById);
+    app.put("/employee/update/:id", { onRequest: [verifyUserRole("MANAGER")] }, updateEmployee);
 }
