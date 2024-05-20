@@ -22,6 +22,10 @@ export class GetProductByIdService {
             throw new Error('Product not found');
         }
 
+        if (!product.is_active) {
+            throw new Error('Product does not exist or is inactive');
+        }
+
         return {
             product
         }
