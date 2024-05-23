@@ -1,14 +1,14 @@
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../repositories/product-repository";
 
-interface FetchAllProductDataServiceResponse {
+interface FetchAllProductsServiceResponse {
     product: Product[];
 }
 
-export class FetchAllProductDataService {
+export class FetchAllProductsService {
     constructor(private productRepository: ProductRepository) { }
 
-    async execute(): Promise<FetchAllProductDataServiceResponse> {
+    async execute(): Promise<FetchAllProductsServiceResponse> {
         const product = await this.productRepository.findMany();
 
         return {
