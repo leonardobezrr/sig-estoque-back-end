@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { makeGetProductsDataService } from "../../../services/factories/product/make-get-products-data-service";
+import { makeFetchAllProductService } from "../../../services/factories/product/make-fetch-all-product-service";
 
 export async function findManyProduct(request: FastifyRequest, reply: FastifyReply) {
-    const getProductsDataService = makeGetProductsDataService();
+    const fetchAllProductService = makeFetchAllProductService();
 
-    const { product } = await getProductsDataService.execute();
+    const { product } = await fetchAllProductService.execute();
 
     reply.code(200).send({
         product
