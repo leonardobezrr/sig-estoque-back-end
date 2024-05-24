@@ -1,35 +1,33 @@
-import { Product } from "@prisma/client";
-import { ProductRepository } from "../../repositories/product-repository";
+import { Supplier } from "@prisma/client";
+import { SupplierRepository } from "../../repositories/supplier-repository";
 
-interface CreateProductServiceRequest {
-    name: string;
-    description: string;
-    price: number;
-    quantity_in_stock: number,
-    batch: string
+interface CreateSupplierServiceRequest {
+    social_name: string,
+    company_name: string,
+    phone_number: string,
+    cnpj: string
 }
 
-interface CreateProductServiceResponse {
-    product: Product
+interface CreateSupplierServiceResponse {
+    supplier: Supplier
 }
 
-export class CreateProductService {
-    constructor(private productRepository: ProductRepository) {
+export class CreateSupplierService {
+    constructor(private supplierRepository: SupplierRepository) {
     }
 
     async handle({
-        name, description, price, quantity_in_stock, batch
-    }: CreateProductServiceRequest): Promise<CreateProductServiceResponse> {
-        const product = await this.productRepository.create({
-            name,
-            description,
-            price,
-            quantity_in_stock,
-            batch
+        social_name, company_name, phone_number, cnpj
+    }: CreateSupplierServiceRequest): Promise<CreateSupplierServiceResponse> {
+        const supplier = await this.supplierRepository.create({
+            social_name,
+            company_name,
+            phone_number,
+            cnpj
         });
 
         return {
-            product
+            supplier
         }
     }
 }

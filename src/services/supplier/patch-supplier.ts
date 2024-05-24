@@ -1,39 +1,34 @@
-import { Product } from "@prisma/client";
-import { ProductRepository } from "../../repositories/product-repository";
+import { Supplier } from "@prisma/client";
+import { SupplierRepository } from "../../repositories/supplier-repository";
 
-interface PatchProductServiceRequest {
+interface PatchSupplierServiceRequest {
     id: string;
     data: {
-        name?: string;
-        description?: string;
-        price?: number;
-        quantity_in_stock?: number;
-        batch?: string;
+        social_name?: string;
+        company_name?: string;
+        phone_number?: string;
+        cnpj?: string;
     };
 }
 
-interface PatchProductServiceResponse {
-    product: Product | null;
+interface PatchSupplierServiceResponse {
+    supplier: Supplier | null;
 }
 
-export class PatchProductService {
-    constructor(private productRepository: ProductRepository) { }
+export class PatchSupplierService {
+    constructor(private supplierRepository: SupplierRepository) { }
 
-    async handle({ id, data }: PatchProductServiceRequest): Promise<PatchProductServiceResponse> {
-        const productExists = await this.productRepository.findById(id);
+    async handle({ id, data }: PatchSupplierServiceRequest): Promise<PatchSupplierServiceResponse> {
+        const supplierExists = await this.supplierRepository.findById(id);
 
-        if (!productExists) {
-            throw new Error('Product not found');
+        if (!supplierExists) {
+            throw new Error('Supplier not found');
         }
 
-        if (!productExists.is_active) {
-            throw new Error('Product does not exist or is inactive');
-        }
-
-        const product = await this.productRepository.patch(id, data);
+        const supplier = await this.supplierRepository.patch(id, data);
 
         return {
-            product
+            supplier
         };
     }
 }
