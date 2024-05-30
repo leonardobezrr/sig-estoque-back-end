@@ -20,6 +20,7 @@ import { fetchAllSupplier } from "../controllers/supplier/fetch-all";
 import { fetchManyByCompanyName } from "../controllers/supplier/fetch-many-by-company-name";
 import { fetchManyBySocialName } from "../controllers/supplier/fetch-many-by-social-name";
 import { findSupplierById } from "../controllers/supplier/find-by-id";
+import { patchSupplier } from "../controllers/supplier/patch";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -52,4 +53,5 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/suppliers/:id", { onRequest: [verifyUserRole("MANAGER")] }, findSupplierById);
     app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole("MANAGER")] }, fetchManyByCompanyName);
     app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole("MANAGER")] }, fetchManyBySocialName);
+    app.patch("/suppliers/:id", { onRequest: [verifyUserRole("MANAGER")] }, patchSupplier);
 }
