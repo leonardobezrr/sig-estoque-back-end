@@ -18,7 +18,10 @@ export class PrismaSupplierRepository implements SupplierRepository {
     async findManyBySocialName(socialName: string) {
         return prisma.supplier.findMany({
             where: {
-                social_name: socialName
+                social_name: {
+                    contains: socialName,
+                    mode: 'insensitive'
+                }
             }
         });
     }
