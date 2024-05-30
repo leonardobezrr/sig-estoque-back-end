@@ -17,6 +17,7 @@ import { findEmployeeById } from "../controllers/employee/find-by-id";
 import { updateEmployee } from "../controllers/employee/update";
 import { createSupplier } from "../controllers/supplier/create";
 import { fetchAllSupplier } from "../controllers/supplier/fetch-all";
+import { fetchManyByCompanyName } from "../controllers/supplier/fetch-many-by-company-name";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -46,4 +47,5 @@ export async function protectedRoutes(app: FastifyInstance) {
     // suppliers
     app.post("/suppliers", { onRequest: [verifyUserRole("MANAGER")] }, createSupplier);
     app.get("/suppliers", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllSupplier);
+    app.get("/suppliers/company/:companyName", { onRequest: [verifyUserRole("MANAGER")] }, fetchManyByCompanyName);
 }

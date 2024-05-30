@@ -26,7 +26,10 @@ export class PrismaSupplierRepository implements SupplierRepository {
     async findManyByCompanyName(companyName: string) {
         return prisma.supplier.findMany({
             where: {
-                company_name: companyName
+                company_name: {
+                    contains: companyName,
+                    mode: 'insensitive'
+                }
             }
         });
     }
