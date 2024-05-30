@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { createProduct } from "../controllers/product/create";
 import { findProductById } from "../controllers/product/find-by-id";
-import { findManyProduct } from "../controllers/product/find-all";
+import { fetchAllProduct } from "../controllers/product/fetch-all";
 import { patchProduct } from "../controllers/product/patch";
 import { inactivateProduct } from "../controllers/product/inactivate";
 import { createManager } from "../controllers/manager/create";
@@ -15,6 +15,7 @@ import { createEmployee } from "../controllers/employee/create";
 import { fetchAllEmployees } from "../controllers/employee/fetch-all";
 import { findEmployeeById } from "../controllers/employee/find-by-id";
 import { updateEmployee } from "../controllers/employee/update";
+import { createSupplier } from "../controllers/supplier/create";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -24,7 +25,7 @@ export async function protectedRoutes(app: FastifyInstance) {
 
     // products
     app.post("/products", createProduct);
-    app.get("/products", findManyProduct);
+    app.get("/products", fetchAllProduct);
     app.get("/products/:id", findProductById);
     app.patch("/products/:id", patchProduct);
     app.delete("/products/:id", inactivateProduct);
@@ -40,4 +41,7 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/employees", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllEmployees);
     app.get("/employee/:id", { onRequest: [verifyUserRole("MANAGER")] }, findEmployeeById);
     app.put("/employee/update/:id", { onRequest: [verifyUserRole("MANAGER")] }, updateEmployee);
+
+    // suppliers
+    app.post("/suppliers", { onRequest: [verifyUserRole("MANAGER")] }, createSupplier);
 }
