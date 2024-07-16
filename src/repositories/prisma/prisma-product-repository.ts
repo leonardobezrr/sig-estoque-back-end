@@ -12,7 +12,13 @@ export class PrismaProductRepository implements ProductRepository {
     }
 
     async findMany() {
-        return prisma.product.findMany();
+        return prisma.product.findMany(
+            {
+                where: {
+                    is_active: true
+                }
+            }
+        );
     }
 
     async findManyByName(name: string) {

@@ -2,8 +2,8 @@ import { PrismaProductRepository } from "../../../repositories/prisma/prisma-pro
 import { PatchProductService } from "../../product/patch-product";
 
 export function makePatchProductService() {
-    const productRepository = new PrismaProductRepository();
-    const useCase = new PatchProductService(productRepository);
+    const prismaProductRepository = new PrismaProductRepository();
+    const useCase = new PatchProductService(prismaProductRepository);
 
     return useCase;
 }

@@ -20,6 +20,16 @@ export class PatchProductService {
     constructor(private productRepository: ProductRepository) { }
 
     async handle({ id, data }: PatchProductServiceRequest): Promise<PatchProductServiceResponse> {
+        const productExists = await this.productRepository.findById(id);
+
+        if (!productExists) {
+            throw new Error('Product not found');
+        }
+
+        if (!productExists.is_active) {
+            throw new Error('Product does not exist or is inactive');
+        }
+
         const product = await this.productRepository.patch(id, data);
 
         return {
