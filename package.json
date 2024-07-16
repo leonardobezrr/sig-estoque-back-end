@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run --dir src/services",
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build"
@@ -21,16 +21,23 @@
     "prisma": "^5.13.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "vitest-sonar-reporter": "^2.0.0"
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",
     "@fastify/jwt": "^8.0.1",
     "@prisma/client": "^5.13.0",
+    "@sideway/address": "^5.0.0",
+    "@sideway/formula": "^3.0.1",
     "bcryptjs": "^2.4.3",
+    "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
+    "joi": "^17.13.1",
     "pg": "^8.11.5",
+    "supertest": "^7.0.0",
+    "vitest": "^2.0.3",
     "zod": "^3.23.5"
   }
 }

@@ -2,8 +2,8 @@ import { PrismaProductRepository } from "../../../repositories/prisma/prisma-pro
 import { InactivateProductService } from "../../product/inactivate-product";
 
 export function makeInactivateProductService() {
-    const productRepository = new PrismaProductRepository();
-    const useCase = new InactivateProductService(productRepository);
+    const prismaProductRepository = new PrismaProductRepository();
+    const useCase = new InactivateProductService(prismaProductRepository);
 
     return useCase;
 }

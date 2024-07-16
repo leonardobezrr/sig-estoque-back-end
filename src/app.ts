@@ -2,6 +2,7 @@ import fastify from "fastify"
 import { protectedRoutes } from "./http/routes/routes"
 import fastifyJwt from "@fastify/jwt";
 import { env } from "./env";
+import { publicRoutes } from "./http/routes/public-routes";
 
 export const app = fastify()
 
@@ -26,4 +27,5 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
 
-app.register(protectedRoutes)
+app.register(protectedRoutes);
+app.register(publicRoutes);
