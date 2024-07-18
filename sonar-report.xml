@@ -1,7 +1,7 @@
 <testExecutions version="1">
   <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="23" />
+    <testCase name="Authenticate Service - should be able to authenticate" duration="29" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="10" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="13" />
   </file>
 </testExecutions>
