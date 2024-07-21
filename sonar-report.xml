@@ -1,7 +1,11 @@
 <testExecutions version="1">
   <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="29" />
+    <testCase name="Authenticate Service - should be able to authenticate" duration="31" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="13" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="16" />
+  </file>
+  <file path="src\services\user\get-user-profile.test.ts">
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="20" />
+    <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
   </file>
 </testExecutions>
