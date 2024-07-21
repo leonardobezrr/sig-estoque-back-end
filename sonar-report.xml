@@ -1,11 +1,28 @@
 <testExecutions version="1">
+  <file path="src\services\employee\create-employee.test.ts">
+    <testCase name="Create Employee service - should be able to create an employee" duration="38">
+      <error message="Email already exists.">
+        <![CDATA[Error: Email already exists.
+    at CreateEmployeeService.execute (C:\Users\Usuario\Desktop\Folders\sig-estoque-back-end\src\services\employee\create-employee.ts:30:13)
+    at C:\Users\Usuario\Desktop\Folders\sig-estoque-back-end\src\services\employee\create-employee.test.ts:28:26
+    at runTest (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:939:11)
+    at runSuite (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1095:15)
+    at runSuite (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1095:15)
+    at runFiles (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1152:5)
+    at startTests (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1161:3)
+    at file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/vitest/dist/chunks/runtime-runBaseTests.hkIOeriM.js:122:11
+    at withEnv (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/vitest/dist/chunks/runtime-runBaseTests.hkIOeriM.js:84:5)
+    at run (file:///C:/Users/Usuario/Desktop/Folders/sig-estoque-back-end/node_modules/vitest/dist/chunks/runtime-runBaseTests.hkIOeriM.js:107:3)]]>
+      </error>
+    </testCase>
+  </file>
   <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="31" />
+    <testCase name="Authenticate Service - should be able to authenticate" duration="32" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="16" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="11" />
   </file>
   <file path="src\services\user\get-user-profile.test.ts">
-    <testCase name="Get User Profile Service - should be able to get user profile" duration="20" />
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="22" />
     <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
   </file>
 </testExecutions>
