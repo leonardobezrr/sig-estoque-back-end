@@ -1,11 +1,17 @@
 <testExecutions version="1">
+  <file path="src\services\product\create-product.test.ts">
+    <testCase name="Create Product Service - should be able to create a product" duration="3" />
+  </file>
+  <file path="src\services\product\fetch-all-product.test.ts">
+    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="5" />
+  </file>
   <file path="src\services\user\authenticate-user.test.ts">
     <testCase name="Authenticate Service - should be able to authenticate" duration="31" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="16" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="22" />
   </file>
   <file path="src\services\user\get-user-profile.test.ts">
-    <testCase name="Get User Profile Service - should be able to get user profile" duration="20" />
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="26" />
     <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
   </file>
 </testExecutions>
