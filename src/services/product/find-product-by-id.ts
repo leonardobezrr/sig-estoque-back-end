@@ -1,5 +1,6 @@
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../repositories/product-repository";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 
 interface FindProductByIdServiceRequest {
     productId: string;
@@ -18,8 +19,7 @@ export class FindProductByIdService {
         const product = await this.productRepository.findById(productId);
 
         if (!product) {
-            //TODO: Create a custom error class
-            throw new Error('Product not found');
+            throw new ResourceNotFoundError();
         }
 
         if (!product.is_active) {
