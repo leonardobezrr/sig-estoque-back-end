@@ -3,19 +3,23 @@
     <testCase name="Create Product Service - should be able to create a product" duration="3" />
   </file>
   <file path="src\services\product\fetch-all-product.test.ts">
-    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="5" />
+    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="4" />
   </file>
   <file path="src\services\product\fetch-product-by-id.test.ts">
-    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="3" />
-    <testCase name="Fetch Product By Id Service - should not be able to fetch product with wrong id" duration="1" />
+    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="4" />
+    <testCase name="Fetch Product By Id Service - should not be able to fetch product with wrong id" duration="2" />
+  </file>
+  <file path="src\services\product\inactive-product.test.ts">
+    <testCase name="Inactivate Product Service - should be able to inactivate a product by id" duration="2" />
+    <testCase name="Inactivate Product Service - should not be able to inactivate a product with wrong id" duration="1" />
   </file>
   <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="30" />
+    <testCase name="Authenticate Service - should be able to authenticate" duration="33" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="14" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="16" />
   </file>
   <file path="src\services\user\get-user-profile.test.ts">
-    <testCase name="Get User Profile Service - should be able to get user profile" duration="23" />
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="25" />
     <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
   </file>
 </testExecutions>
