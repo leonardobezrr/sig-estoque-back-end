@@ -6,6 +6,7 @@ app.listen({
   port: env.PORT,
 }).then(() => {
   console.log('HTTP server running')
+  console.log()
 }).catch((error) => {
     console.log(error)
 })
