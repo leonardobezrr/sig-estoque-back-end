@@ -21,12 +21,16 @@ import { fetchManyByCompanyName } from "../controllers/supplier/fetch-many-by-co
 import { fetchManyBySocialName } from "../controllers/supplier/fetch-many-by-social-name";
 import { findSupplierById } from "../controllers/supplier/find-by-id";
 import { patchSupplier } from "../controllers/supplier/patch";
+import { fetchAllUsers } from "../controllers/user/fetch-all";
+import { deleteUser } from "../controllers/user/delete";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
 
     // users
     app.get("/profile", profile);
+    app.get("/users", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllUsers);
+    app.delete("/delete/:id", { onRequest: [verifyUserRole("MANAGER")] }, deleteUser);
 
     // products
     app.post("/products", createProduct);

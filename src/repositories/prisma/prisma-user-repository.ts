@@ -3,6 +3,38 @@ import { prisma } from "../../lib/prisma";
 import { UserRepository } from "../user-repository";
 
 export class PrismaUserRepository implements UserRepository {
+  async delete(id: string) {
+    await prisma.manager.deleteMany({
+      where: { userId: id },
+    });
+
+    await prisma.employee.deleteMany({
+      where: { userId: id },
+    });
+
+    const user = await prisma.user.delete({
+      where: {
+        id
+      }
+    })
+
+    return user;
+  }
+
+  async findMany() {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        password_hash: true,
+      }
+    });
+
+    return users;
+  }
+
   async findById(id: string) {
     const user = await prisma.user.findFirst({
       where: {
