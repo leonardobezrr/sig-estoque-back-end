@@ -23,12 +23,14 @@ import { findSupplierById } from "../controllers/supplier/find-by-id";
 import { patchSupplier } from "../controllers/supplier/patch";
 import { fetchAllUsers } from "../controllers/user/fetch-all";
 import { deleteUser } from "../controllers/user/delete";
+import { findUserByid } from "../controllers/user/find-by-id";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
 
     // users
-    app.get("/profile", profile);
+    app.get("/user/:id", { onRequest: verifyUserRole("MANAGER") }, findUserByid);
+    app.get("/profile", { onRequest: [verifyUserRole("MANAGER")] }, profile);
     app.get("/users", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllUsers);
     app.delete("/delete/:id", { onRequest: [verifyUserRole("MANAGER")] }, deleteUser);
 
