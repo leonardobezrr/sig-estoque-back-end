@@ -172,7 +172,7 @@ classDiagram
 | ALI Fornecedor       | Fornecedor                    | 35 PF             |
 | ALI Produto          | Produto                       | 35 PF             |
 | ALI Item             | Item                          | 35 PF             |
-| **Total**            | **Ci**                        | **185 PF**        |
+| **Total**            | **Ci**                        | **210 PF**        |
 
 ## Contagem Detalhada (Cd)
 
@@ -208,11 +208,11 @@ Para a contagem detalhada, calculamos os Pontos de Função com base nas Funçõ
 | Atualizar Produto    | EE       | 2       | 10      | Média            | 5 PF              |
 | Consultar Produto    | CE       | 2       | 10      | Média            | 5 PF              |
 | Detalhar Produto     | CE       | 2       | 10      | Média            | 5 PF              |
-| **Total**            |          |         |         | **Cd**           | **144 PF**        |
+| **Total**            |          |         |         | **Cd**           | **150 PF**        |
 
 ## Resumo Final
 
-**Contagem Indicativa (Ci):** 185 PF  
-**Contagem Detalhada (Cd):** 144 PF
+**Contagem Indicativa (Ci):** 210 PF  
+**Contagem Detalhada (Cd):** 150 PF
 
 A contagem indicativa fornece uma estimativa baseada nas entidades e suas relações, enquanto a contagem detalhada considera a complexidade das transações e operações no sistema.
