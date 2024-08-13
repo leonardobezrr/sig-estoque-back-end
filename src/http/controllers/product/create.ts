@@ -7,18 +7,23 @@ export async function createProduct(request: FastifyRequest, reply: FastifyReply
         name: z.string(),
         description: z.string(),
         price: z.number(),
+        supplierId: z.string(),
+        quantity_in_stock: z.number(),
     });
 
-    const { name, description, price } = createProdutctBodySchema.parse(request.body);
+    const { name, description, price, supplierId, quantity_in_stock } = createProdutctBodySchema.parse(request.body);
 
     const CreateProductService = makeCreateProductService();
+
+    const batch = Math.random().toString(36).substring(2, 8).toUpperCase();
 
     const { product } = await CreateProductService.handle({
         name,
         description,
         price,
-        quantity_in_stock: 0,
-        batch: "default"
+        supplierId,
+        quantity_in_stock,
+        batch: batch
     });
 
     reply.code(201).send({
