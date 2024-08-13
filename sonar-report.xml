@@ -1,41 +1,73 @@
 <testExecutions version="1">
-  <file path="src\services\product\create-product.test.ts">
-    <testCase name="Create Product Service - should be able to create a product" duration="3" />
+  <file path="src/services/manager/create-manager.test.ts">
+    <testCase name="Create Manager Service - should be able to create a new manager" duration="204" />
+    <testCase name="Create Manager Service - should hash the manager password before saving" duration="355" />
+    <testCase name="Create Manager Service - should not allow creating a manager with an existing email" duration="135" />
+    <testCase name="Create Manager Service - should not allow creating a manager with empty or invalid data" duration="1" />
   </file>
-  <file path="src\services\product\fetch-all-product.test.ts">
-    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="5" />
+  <file path="src/services/manager/fetch-all-manager.test.ts">
+    <testCase name="Fetch All Managers Service - should be able to fetch all managers" duration="4" />
   </file>
-  <file path="src\services\product\fetch-product-by-id.test.ts">
-    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="4" />
+  <file path="src/services/manager/find-manager-by-id.test.ts">
+    <testCase name="Find Manager By Id Service - should be able to find a manager by ID" duration="16" />
+    <testCase name="Find Manager By Id Service - should return null if manager is not found" duration="0" />
+  </file>
+  <file path="src/services/manager/find-manager-by-user-id.test.ts">
+    <testCase name="Find Manager By User ID Service - should be able to find a manager by user ID" duration="2" />
+    <testCase name="Find Manager By User ID Service - should return null if manager is not found" duration="1" />
+  </file>
+  <file path="src/services/manager/update-manager.test.ts">
+    <testCase name="Update Manager Service - should be able to update a manager&apos;s information" duration="56" />
+    <testCase name="Update Manager Service - should be able to update manager&apos;s information without changing the password" duration="14" />
+  </file>
+  <file path="src/services/product/create-product.test.ts">
+    <testCase name="Create Product Service - should be able to fetch product by id" duration="9" />
+  </file>
+  <file path="src/services/product/fetch-all-product.test.ts">
+    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="2" />
+  </file>
+  <file path="src/services/product/fetch-product-by-id.test.ts">
+    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="5" />
     <testCase name="Fetch Product By Id Service - should not be able to fetch product with wrong id" duration="1" />
   </file>
-  <file path="src\services\product\inactivate-product.test.ts">
-    <testCase name="Inactivate Product Service - should be able to inactivate a product by id" duration="3" />
-    <testCase name="Inactivate Product Service - should not be able to inactivate a product with wrong id" duration="2" />
+  <file path="src/services/product/inactivate-product.test.ts">
+    <testCase name="Inactivate Product Service - should be able to inactivate a product by id" duration="11" />
+    <testCase name="Inactivate Product Service - should not be able to inactivate a product with wrong id" duration="6" />
   </file>
-  <file path="src\services\supplier\create-supplier.test.ts">
-    <testCase name="Create Supplier Service - should be able to create a supplier" duration="3" />
+  <file path="src/services/supplier/create-supplier.test.ts">
+    <testCase name="Create Supplier Service - should be able to create a supplier" duration="4" />
   </file>
-  <file path="src\services\supplier\fetch-all-supplier.test.ts">
-    <testCase name="Fetch All Supplier Service - should be able to fetch all suppliers" duration="5" />
+  <file path="src/services/supplier/fetch-all-supplier.test.ts">
+    <testCase name="Fetch All Supplier Service - should be able to fetch all suppliers" duration="3" />
   </file>
-  <file path="src\services\supplier\fetch-many-supplier-by-company-name.test.ts">
+  <file path="src/services/supplier/fetch-many-supplier-by-company-name.test.ts">
+    <testCase name="Fetch Many Supplier By Company Name Service - should be able to fetch suppliers by company name" duration="15" />
+  </file>
+  <file path="src/services/supplier/fetch-many-supplier-by-social-name.test.ts">
     <testCase name="Fetch Many Supplier By Company Name Service - should be able to fetch suppliers by company name" duration="5" />
   </file>
-  <file path="src\services\supplier\fetch-many-supplier-by-social-name.test.ts">
-    <testCase name="Fetch Many Supplier By Company Name Service - should be able to fetch suppliers by company name" duration="5" />
+  <file path="src/services/supplier/find-supplier-by-id.test.ts">
+    <testCase name="Find Supplier By Id Service - should be able to find a supplier by ID" duration="3" />
+    <testCase name="Find Supplier By Id Service - should throw an error if supplier is not found" duration="11" />
   </file>
-  <file path="src\services\supplier\find-supplier-by-id.test.ts">
-    <testCase name="Find Supplier By Id Service - should be able to find a supplier by ID" duration="4" />
-    <testCase name="Find Supplier By Id Service - should throw an error if supplier is not found" duration="2" />
+  <file path="src/services/user/authenticate-user.test.ts">
+    <testCase name="Authenticate Service - should be able to authenticate" duration="46" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="23" />
   </file>
-  <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="65" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="4" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="48" />
+  <file path="src/services/user/delete-user.test.ts">
+    <testCase name="Delete User Service - should be able to delete a user by ID" duration="4" />
+    <testCase name="Delete User Service - should throw an error if the user does not exist" duration="1" />
   </file>
-  <file path="src\services\user\get-user-profile.test.ts">
-    <testCase name="Get User Profile Service - should be able to get user profile" duration="29" />
-    <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
+  <file path="src/services/user/get-all-users.test.ts">
+    <testCase name="Get All Users Service - should return all users" duration="6" />
+  </file>
+  <file path="src/services/user/get-user-by-id.test.ts">
+    <testCase name="Get User By ID Service - should return the user when the user exists" duration="3" />
+    <testCase name="Get User By ID Service - should throw a ResourceNotFoundError when the user does not exist" duration="1" />
+  </file>
+  <file path="src/services/user/get-user-profile.test.ts">
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="43" />
+    <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="2" />
   </file>
 </testExecutions>

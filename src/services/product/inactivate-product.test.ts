@@ -2,6 +2,9 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryProductsRepository } from "../../repositories/in-memory/in-memory-products-repository";
 import { InactivateProductService } from "./inactivate-product";
 
+// Supondo que você tem um fornecedor fictício com um ID para teste
+const dummySupplierId = 'dummy-supplier-id';
+
 let productRepository: InMemoryProductsRepository;
 let sut: InactivateProductService;
 
@@ -17,7 +20,8 @@ describe('Inactivate Product Service', () => {
             description: 'Product 1 description',
             price: 100,
             quantity_in_stock: 10,
-            batch: 'ABC123'
+            batch: 'ABC123',
+            supplierId: dummySupplierId  // Adicionado supplierId
         });
 
         await sut.execute({
