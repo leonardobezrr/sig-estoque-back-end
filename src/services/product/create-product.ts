@@ -5,6 +5,7 @@ interface CreateProductServiceRequest {
     name: string;
     description: string;
     price: number;
+    supplierId: string;
     quantity_in_stock: number,
     batch: string
 }
@@ -18,9 +19,10 @@ export class CreateProductService {
     }
 
     async handle({
-        name, description, price, quantity_in_stock, batch
+        name, description, price, supplierId, quantity_in_stock, batch
     }: CreateProductServiceRequest): Promise<CreateProductServiceResponse> {
         const product = await this.productRepository.create({
+            supplierId,
             name,
             description,
             price,

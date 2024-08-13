@@ -35,11 +35,11 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.delete("/delete/:id", { onRequest: [verifyUserRole("MANAGER")] }, deleteUser);
 
     // products
-    app.post("/products", createProduct);
-    app.get("/products", fetchAllProduct);
-    app.get("/products/:id", findProductById);
-    app.patch("/products/:id", patchProduct);
-    app.delete("/products/:id", inactivateProduct);
+    app.post("/products", { onRequest: [verifyUserRole("EMPLOYEE")] }, createProduct);
+    app.get("/products", { onRequest: [verifyUserRole("EMPLOYEE")] }, fetchAllProduct);
+    app.get("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, findProductById);
+    app.patch("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, patchProduct);
+    app.delete("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, inactivateProduct);
 
     // managers
     app.post("/managers", { onRequest: [verifyUserRole("MANAGER")] }, createManager);
