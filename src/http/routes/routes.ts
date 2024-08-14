@@ -29,35 +29,35 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
 
     // users
-    app.get("/user/:id", { onRequest: verifyUserRole("MANAGER") }, findUserByid);
-    app.get("/profile", { onRequest: [verifyUserRole("MANAGER")] }, profile);
-    app.get("/users", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllUsers);
-    app.delete("/delete/:id", { onRequest: [verifyUserRole("MANAGER")] }, deleteUser);
+    app.get("/user/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findUserByid);
+    app.get("/profile", { onRequest: [verifyUserRole(["MANAGER"])] }, profile);
+    app.get("/users", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchAllUsers);
+    app.delete("/delete/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, deleteUser);
 
     // products
-    app.post("/products", { onRequest: [verifyUserRole("EMPLOYEE")] }, createProduct);
-    app.get("/products", { onRequest: [verifyUserRole("EMPLOYEE")] }, fetchAllProduct);
-    app.get("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, findProductById);
-    app.patch("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, patchProduct);
-    app.delete("/products/:id", { onRequest: [verifyUserRole("EMPLOYEE")] }, inactivateProduct);
+    app.post("/products", { onRequest: [verifyUserRole(["EMPLOYEE"])] }, createProduct);
+    app.get("/products", { onRequest: [verifyUserRole(["EMPLOYEE"])] }, fetchAllProduct);
+    app.get("/products/:id", { onRequest: [verifyUserRole(["EMPLOYEE"])] }, findProductById);
+    app.patch("/products/:id", { onRequest: [verifyUserRole(["EMPLOYEE"])] }, patchProduct);
+    app.delete("/products/:id", { onRequest: [verifyUserRole(["EMPLOYEE"])] }, inactivateProduct);
 
     // managers
-    app.post("/managers", { onRequest: [verifyUserRole("MANAGER")] }, createManager);
-    app.get("/managers", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllManagers);
-    app.get("/manager/:id", { onRequest: [verifyUserRole("MANAGER")] }, findManagerById);
-    app.put("/manager/update/:id", { onRequest: [verifyUserRole("MANAGER")] }, updateManager);
+    app.post("/managers", { onRequest: [verifyUserRole(["MANAGER"])] }, createManager);
+    app.get("/managers", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchAllManagers);
+    app.get("/manager/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, findManagerById);
+    app.put("/manager/update/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, updateManager);
 
     // employees
-    app.post("/employees", { onRequest: [verifyUserRole("MANAGER")] }, createEmployee);
-    app.get("/employees", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllEmployees);
-    app.get("/employee/:id", { onRequest: [verifyUserRole("MANAGER")] }, findEmployeeById);
-    app.put("/employee/update/:id", { onRequest: [verifyUserRole("MANAGER")] }, updateEmployee);
+    app.post("/employees", { onRequest: [verifyUserRole(["MANAGER"])] }, createEmployee);
+    app.get("/employees", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchAllEmployees);
+    app.get("/employee/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, findEmployeeById);
+    app.put("/employee/update/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, updateEmployee);
 
     // suppliers
-    app.post("/suppliers", { onRequest: [verifyUserRole("MANAGER")] }, createSupplier);
-    app.get("/suppliers", { onRequest: [verifyUserRole("MANAGER")] }, fetchAllSupplier);
-    app.get("/suppliers/:id", { onRequest: [verifyUserRole("MANAGER")] }, findSupplierById);
-    app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole("MANAGER")] }, fetchManyByCompanyName);
-    app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole("MANAGER")] }, fetchManyBySocialName);
-    app.patch("/suppliers/:id", { onRequest: [verifyUserRole("MANAGER")] }, patchSupplier);
+    app.post("/suppliers", { onRequest: [verifyUserRole(["MANAGER"])] }, createSupplier);
+    app.get("/suppliers", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchAllSupplier);
+    app.get("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, findSupplierById);
+    app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchManyByCompanyName);
+    app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchManyBySocialName);
+    app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, patchSupplier);
 }
