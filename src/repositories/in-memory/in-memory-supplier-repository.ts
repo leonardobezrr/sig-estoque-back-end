@@ -1,3 +1,5 @@
+// in-memory-supplier-repository.ts
+
 import { SupplierRepository } from "../supplier-repository";
 import { Prisma, Supplier } from "@prisma/client";
 import { randomUUID } from "crypto";
@@ -43,6 +45,11 @@ export class InMemorySuppliersRepository implements SupplierRepository {
 
     async findManyByCompanyName(company_name: string) {
         return this.items.filter(item => item.company_name === company_name && item.is_active);
+    }
+
+    // Adiciona o método findManyBySocialName
+    async findManyBySocialName(social_name: string) {
+        return this.items.filter(item => item.social_name === social_name && item.is_active);
     }
 
     async findById(id: string) {

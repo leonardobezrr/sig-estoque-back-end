@@ -3,6 +3,7 @@ import { hash, compare } from "bcryptjs";
 import { InMemoryManagersRepository } from "../../repositories/in-memory/in-memory-manager-repository";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users-repository";
 import { UpdateManagerService } from "./update-manager";
+import { NoRecordsFoundError } from "../errors/no-records-found-error";  // Importa o erro
 
 let managersRepository: InMemoryManagersRepository;
 let usersRepository: InMemoryUsersRepository;
@@ -79,5 +80,32 @@ describe("Update Manager Service", () => {
     // Verifique se a senha não foi alterada
     const isPasswordCorrect = await compare("janespassword", updatedUser!.password_hash);
     expect(isPasswordCorrect).toBe(true);
+  });
+
+  it("should throw NoRecordsFoundError if user is not found", async () => {
+    await expect(() =>
+      updateManagerService.execute({
+        userId: 'non-existing-user-id',
+        name: 'Some Name',
+        email: 'someemail@example.com',
+      })
+    ).rejects.toThrow(NoRecordsFoundError);
+  });
+
+  it("should throw NoRecordsFoundError if manager is not found", async () => {
+    const user = await usersRepository.create({
+      name: "Manager",
+      email: "manager@example.com",
+      role: "MANAGER",
+      password_hash: await hash("password", 6),
+    });
+
+    await expect(() =>
+      updateManagerService.execute({
+        userId: user.id,
+        name: 'Updated Name',
+        email: 'updated@example.com',
+      })
+    ).rejects.toThrow(NoRecordsFoundError);
   });
 });

@@ -15,23 +15,39 @@ interface CreateProductServiceResponse {
 }
 
 export class CreateProductService {
-    constructor(private productRepository: ProductRepository) {
-    }
+    constructor(private productRepository: ProductRepository) { }
 
     async handle({
-        name, description, price, supplierId, quantity_in_stock, batch
+        name,
+        description,
+        price,
+        quantity_in_stock,
+        batch,
+        supplierId,
     }: CreateProductServiceRequest): Promise<CreateProductServiceResponse> {
+        // Validação dos dados
+        if (!name || !description || price == null || quantity_in_stock == null || !batch || !supplierId) {
+            throw new Error('Invalid data provided');
+        }
+
+        if (price <= 0) {
+            throw new Error('Invalid data provided');
+        }
+
+        if (quantity_in_stock < 0) {
+            throw new Error('Invalid data provided');
+        }
+
+        // Criação do produto
         const product = await this.productRepository.create({
-            supplierId,
             name,
             description,
             price,
             quantity_in_stock,
-            batch
+            batch,
+            supplierId,
         });
 
-        return {
-            product
-        }
+        return { product };
     }
 }

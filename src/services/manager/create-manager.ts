@@ -3,6 +3,7 @@ import { hash } from "bcryptjs";
 import { ManagerRepository } from "../../repositories/manager-repository";
 import { UserRepository } from "../../repositories/user-repository";
 import { isEmail } from 'validator';  // Importação da biblioteca validator
+import { UserAlreadyExistsError } from "../errors/user-already-exists-error"; // Importar o erro personalizado
 
 interface CreateManagerServiceRequest {
   name: string;
@@ -42,7 +43,7 @@ export class CreateManagerService {
     const userWithSameEmail = await this.userRepository.findByEmail(email);
 
     if (userWithSameEmail) {
-      throw new Error("Email already exists.");
+      throw new UserAlreadyExistsError(); // Lançar erro personalizado
     }
 
     // Criptografar a senha

@@ -1,5 +1,7 @@
+// find-manager-by-id.ts
 import { Manager } from "@prisma/client";
 import { ManagerRepository } from "../../repositories/manager-repository";
+import { NoRecordsFoundError } from "../errors/no-records-found-error";  // Importa o erro
 
 interface FindManagerByIdServiceRequest {
   id: string;
@@ -15,10 +17,13 @@ export class FindManagerByIdService {
   async execute({
     id,
   }: FindManagerByIdServiceRequest): Promise<FindManagerByIdServiceResponse> {
-    const manager = await this.managerRepository.findById(id)
+    // Busca o gerente pelo ID
+    const manager = await this.managerRepository.findById(id);
 
-    return {
-      manager
-    };
+    if (!manager) {
+      throw new NoRecordsFoundError();  // Lança o erro se não encontrado
+    }
+
+    return { manager };
   }
 }

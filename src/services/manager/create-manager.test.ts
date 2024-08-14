@@ -3,7 +3,7 @@ import { CreateManagerService } from "./create-manager";
 import { InMemoryManagersRepository } from "../../repositories/in-memory/in-memory-manager-repository";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users-repository";
 import { hash, compare } from "bcryptjs";
-import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 
 let managerRepository: InMemoryManagersRepository;
 let userRepository: InMemoryUsersRepository;
@@ -57,7 +57,7 @@ describe('Create Manager Service', () => {
         email: 'manager1@example.com',
         password: 'password123',
       }),
-    ).rejects.toThrow('Email already exists.');
+    ).rejects.toThrow(UserAlreadyExistsError);
   });
 
   it('should not allow creating a manager with empty or invalid data', async () => {
