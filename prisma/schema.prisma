@@ -86,6 +86,7 @@ model Product {
   price             Float
   quantity_in_stock Int?
   batch             String?
+  supplier          Supplier @relation(fields: [supplierId], references: [id])
   supplierId        String
   is_active         Boolean? @default(true)
   createdAt         DateTime @default(now())
@@ -119,6 +120,7 @@ model Supplier {
   phone_number String
   cnpj         String
   Purchase     Purchase[]
+  Product      Product[]
 
   @@map("suppliers")
 }

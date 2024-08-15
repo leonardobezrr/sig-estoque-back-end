@@ -20,7 +20,11 @@ describe('Fetch All Product Service', () => {
             price: 100,
             quantity_in_stock: 10,
             batch: 'ABC123',
-            supplierId: dummySupplierId
+            supplier: {
+                connect: {
+                    id: dummySupplierId
+                }
+            }
         });
 
         await productRepository.create({
@@ -29,7 +33,11 @@ describe('Fetch All Product Service', () => {
             price: 200,
             quantity_in_stock: 20,
             batch: 'DEF456',
-            supplierId: dummySupplierId
+            supplier: {
+                connect: {
+                    id: dummySupplierId
+                }
+            }
         });
 
         const result = await sut.execute();
