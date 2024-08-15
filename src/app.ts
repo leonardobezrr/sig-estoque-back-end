@@ -9,7 +9,7 @@ export const app = fastify();
 app.addHook('preHandler', (req, res, done) => {
   // Cabeçalhos CORS
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   // Verifica se a requisição é uma pré-verificação (preflight)

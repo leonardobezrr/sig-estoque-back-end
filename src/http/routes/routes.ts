@@ -54,10 +54,10 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.put("/employee/update/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, updateEmployee);
 
     // suppliers
-    app.post("/suppliers", { onRequest: [verifyUserRole(["MANAGER"])] }, createSupplier);
-    app.get("/suppliers", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchAllSupplier);
-    app.get("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, findSupplierById);
-    app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchManyByCompanyName);
-    app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER"])] }, fetchManyBySocialName);
-    app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER"])] }, patchSupplier);
+    app.post("/suppliers", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createSupplier);
+    app.get("/suppliers", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllSupplier);
+    app.get("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findSupplierById);
+    app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyByCompanyName);
+    app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyBySocialName);
+    app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, patchSupplier);
 }
