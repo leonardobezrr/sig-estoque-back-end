@@ -20,6 +20,7 @@ Responsabilidade do Testador
 | Teste 05: Tentativa de fazer login com usuário existente porém com senha inválida | A5 - Ao tentar fazer login com um email válido porém senha inválida usuário não foi informado de nenhuma irregularidade | É preciso adicionar uma mensagem para informar o usuário que algum dos seus dados estão incorretos	 | Denied. |
 | Teste 06: Editar usuário | A6 - É possível editar usuário clicando no botão existente  | Especificação OK.	 | Passed. |
 | Teste 07: Excluir usuário | A7 - É possível excluir usuário clicando no botão existente  | Especificação OK.	 | Passed. |
+| Teste 08: Cadastrar usuário | A8 - É possível cadastrar um novo usuário clicando no botão existente  | Especificação OK.	 | Passed. |
 
 
 **AC002 – Employee**
