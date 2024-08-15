@@ -27,5 +27,4 @@ Responsabilidade do Gerente
 
 | Teste | Providência | Tarefas/Tipo |
 | :---- | :---- | :---- |
-| US001 Manter Usuário | Realizar a implementação de mais testes. | Tarefa: Criar novos testes para alterar e buscar . |
-| US004 Manter Gerente | Realizar a implementação de mais testes. | Tarefa: Criar novos testes para inserir, alterar e buscar . |
+| AC001 Fazer login com usuário inexistente | Realizar a implementação de uma mensagem de erro. | Tarefa: Criar mensagem de erro . |
