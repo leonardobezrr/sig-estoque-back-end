@@ -57,8 +57,8 @@ export class UpdateEmployeeService {
       const oldEmployee = await this.employeeRepository.findByUserId(user.id);
 
       const updatedEmployee = await this.employeeRepository.update({
+        ...oldEmployee!,
         userId: user.id,
-        id: oldEmployee!.id
       });
 
       return {
