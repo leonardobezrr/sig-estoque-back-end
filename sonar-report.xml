@@ -1,76 +1,110 @@
 <testExecutions version="1">
+  <file path="src\services\employee\create-employee.test.ts">
+    <testCase name="Create Employee Service - should be able to create a new employee" duration="28" />
+    <testCase name="Create Employee Service - should not allow creating a new employee with an existing email" duration="8" />
+  </file>
+  <file path="src\services\employee\fetch-all-employee.test.ts">
+    <testCase name="Fetch All Employee Service - should be able to fetch all employees" duration="4" />
+  </file>
+  <file path="src\services\employee\find-employee-by-id.test.ts">
+    <testCase name="Find Employee by ID Service - should be able to find an employee by ID" duration="3" />
+    <testCase name="Find Employee by ID Service - should return null if employee is not found" duration="0" />
+  </file>
+  <file path="src\services\employee\find-employee-by-user-id.test.ts">
+    <testCase name="Find Employee by User ID Service - should be able to find an employee by User ID" duration="3" />
+    <testCase name="Find Employee by User ID Service - should return null if employee with User ID is not found" duration="0" />
+  </file>
+  <file path="src\services\employee\update-employee.test.ts">
+    <testCase name="Update Employee Service - should be able to update an employee" duration="38" />
+    <testCase name="Update Employee Service - should throw an error if user is not found" duration="5" />
+    <testCase name="Update Employee Service - should throw an error if updating employee fails" duration="18" />
+  </file>
   <file path="src\services\manager\create-manager.test.ts">
-    <testCase name="Create Manager Service - should be able to create a new manager" duration="139" />
-    <testCase name="Create Manager Service - should hash the manager password before saving" duration="325" />
-    <testCase name="Create Manager Service - should not allow creating a manager with an existing email" duration="152" />
+    <testCase name="Create Manager Service - should be able to create a new manager" duration="141" />
+    <testCase name="Create Manager Service - should hash the manager password before saving" duration="320" />
+    <testCase name="Create Manager Service - should not allow creating a manager with an existing email" duration="187" />
   </file>
   <file path="src\services\manager\fetch-all-manager.test.ts">
-    <testCase name="Fetch All Managers Service - should be able to fetch all managers" duration="5" />
+    <testCase name="Fetch All Managers Service - should be able to fetch all managers" duration="4" />
   </file>
   <file path="src\services\manager\find-manager-by-id.test.ts">
-    <testCase name="Find Manager By Id Service - should be able to find a manager by ID" duration="4" />
+    <testCase name="Find Manager By Id Service - should be able to find a manager by ID" duration="3" />
     <testCase name="Find Manager By Id Service - should throw NoRecordsFoundError if manager is not found" duration="1" />
   </file>
   <file path="src\services\manager\find-manager-by-user-id.test.ts">
-    <testCase name="Find Manager By User ID Service - should be able to find a manager by user ID" duration="5" />
-    <testCase name="Find Manager By User ID Service - should return null if manager is not found" duration="1" />
+    <testCase name="Find Manager By User ID Service - should be able to find a manager by user ID" duration="3" />
+    <testCase name="Find Manager By User ID Service - should return null if manager is not found" duration="0" />
   </file>
   <file path="src\services\manager\update-manager.test.ts">
-    <testCase name="Update Manager Service - should be able to update a manager&apos;s information" duration="52" />
-    <testCase name="Update Manager Service - should be able to update manager&apos;s information without changing the password" duration="21" />
-    <testCase name="Update Manager Service - should throw NoRecordsFoundError if user is not found" duration="2" />
-    <testCase name="Update Manager Service - should throw NoRecordsFoundError if manager is not found" duration="10" />
+    <testCase name="Update Manager Service - should be able to update a manager&apos;s information" duration="92" />
+    <testCase name="Update Manager Service - should be able to update manager&apos;s information without changing the password" duration="22" />
+    <testCase name="Update Manager Service - should throw NoRecordsFoundError if user is not found" duration="1" />
+    <testCase name="Update Manager Service - should throw NoRecordsFoundError if manager is not found" duration="9" />
   </file>
   <file path="src\services\product\create-product.test.ts">
-    <testCase name="Create Product Service - should be able to create a new product" duration="4" />
+    <testCase name="Create Product Service - should be able to create a new product" duration="41">
+      <error message="No records found.">
+        <![CDATA[Error: No records found.
+    at FindSupplierByIdService.execute (C:\Users\Cliente\Documents\ws-node\sig-estoque-back-end\src\services\supplier\find-supplier-by-id.ts:20:19)
+    at CreateProductService.handle (C:\Users\Cliente\Documents\ws-node\sig-estoque-back-end\src\services\product\create-product.ts:34:30)
+    at C:\Users\Cliente\Documents\ws-node\sig-estoque-back-end\src\services\product\create-product.test.ts:17:29
+    at runTest (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:960:11)
+    at runSuite (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1116:15)
+    at runSuite (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1116:15)
+    at runFiles (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1173:5)
+    at startTests (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/@vitest/runner/dist/index.js:1182:3)
+    at file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/vitest/dist/chunks/runBaseTests.CyvqmuC9.js:130:11
+    at withEnv (file:///C:/Users/Cliente/Documents/ws-node/sig-estoque-back-end/node_modules/vitest/dist/chunks/runBaseTests.CyvqmuC9.js:94:5)]]>
+      </error>
+    </testCase>
   </file>
   <file path="src\services\product\fetch-all-product.test.ts">
-    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="6" />
+    <testCase name="Fetch All Product Service - should be able to fetch all products" duration="4" />
   </file>
   <file path="src\services\product\fetch-product-by-id.test.ts">
-    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="5" />
+    <testCase name="Fetch Product By Id Service - should be able to fetch product by id" duration="3" />
     <testCase name="Fetch Product By Id Service - should not be able to fetch product with wrong id" duration="1" />
   </file>
   <file path="src\services\product\inactivate-product.test.ts">
     <testCase name="Inactivate Product Service - should be able to inactivate a product by id" duration="4" />
-    <testCase name="Inactivate Product Service - should not be able to inactivate a product with wrong id" duration="3" />
+    <testCase name="Inactivate Product Service - should not be able to inactivate a product with wrong id" duration="2" />
   </file>
   <file path="src\services\supplier\create-supplier.test.ts">
-    <testCase name="Create Supplier Service - should be able to create a new supplier" duration="4" />
+    <testCase name="Create Supplier Service - should be able to create a new supplier" duration="3" />
   </file>
   <file path="src\services\supplier\fetch-all-supplier.test.ts">
-    <testCase name="Fetch All Supplier Service - should be able to fetch all suppliers" duration="5" />
+    <testCase name="Fetch All Supplier Service - should be able to fetch all suppliers" duration="4" />
   </file>
   <file path="src\services\supplier\fetch-many-supplier-by-company-name.test.ts">
-    <testCase name="Fetch Many Supplier By Company Name Service - should be able to fetch suppliers by company name" duration="5" />
+    <testCase name="Fetch Many Supplier By Company Name Service - should be able to fetch suppliers by company name" duration="4" />
   </file>
   <file path="src\services\supplier\fetch-many-supplier-by-social-name.test.ts">
-    <testCase name="Fetch Many Supplier By Social Name Service - should be able to fetch suppliers by social name" duration="6" />
-    <testCase name="Fetch Many Supplier By Social Name Service - should be able to fetch suppliers by multiple social names" duration="2" />
-    <testCase name="Fetch Many Supplier By Social Name Service - should throw NoRecordsFoundError if no suppliers are found for the given social name" duration="2" />
+    <testCase name="Fetch Many Supplier By Social Name Service - should be able to fetch suppliers by social name" duration="5" />
+    <testCase name="Fetch Many Supplier By Social Name Service - should be able to fetch suppliers by multiple social names" duration="1" />
+    <testCase name="Fetch Many Supplier By Social Name Service - should throw NoRecordsFoundError if no suppliers are found for the given social name" duration="1" />
   </file>
   <file path="src\services\supplier\find-supplier-by-id.test.ts">
-    <testCase name="Find Supplier By Id Service - should be able to find a supplier by ID" duration="5" />
+    <testCase name="Find Supplier By Id Service - should be able to find a supplier by ID" duration="4" />
     <testCase name="Find Supplier By Id Service - should throw NoRecordsFoundError if supplier is not found" duration="1" />
   </file>
   <file path="src\services\user\authenticate-user.test.ts">
-    <testCase name="Authenticate Service - should be able to authenticate" duration="46" />
+    <testCase name="Authenticate Service - should be able to authenticate" duration="33" />
     <testCase name="Authenticate Service - should not be able to authenticate with wrong email" duration="1" />
-    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="19" />
+    <testCase name="Authenticate Service - should not be able to authenticate with wrong password" duration="15" />
   </file>
   <file path="src\services\user\delete-user.test.ts">
-    <testCase name="Delete User Service - should be able to delete a user by ID" duration="4" />
+    <testCase name="Delete User Service - should be able to delete a user by ID" duration="3" />
     <testCase name="Delete User Service - should throw an error if the user does not exist" duration="2" />
   </file>
   <file path="src\services\user\get-all-users.test.ts">
-    <testCase name="Get All Users Service - should return all users" duration="6" />
+    <testCase name="Get All Users Service - should return all users" duration="4" />
   </file>
   <file path="src\services\user\get-user-by-id.test.ts">
-    <testCase name="Get User By ID Service - should return the user when the user exists" duration="5" />
-    <testCase name="Get User By ID Service - should throw a ResourceNotFoundError when the user does not exist" duration="3" />
+    <testCase name="Get User By ID Service - should return the user when the user exists" duration="3" />
+    <testCase name="Get User By ID Service - should throw a ResourceNotFoundError when the user does not exist" duration="1" />
   </file>
   <file path="src\services\user\get-user-profile.test.ts">
-    <testCase name="Get User Profile Service - should be able to get user profile" duration="31" />
+    <testCase name="Get User Profile Service - should be able to get user profile" duration="29" />
     <testCase name="Get User Profile Service - should not be able to get user profile with wrong id" duration="1" />
   </file>
 </testExecutions>
