@@ -1,14 +1,8 @@
-// in-memory-supplier-repository.ts
-
 import { SupplierRepository } from "../supplier-repository";
 import { Prisma, Supplier } from "@prisma/client";
 import { randomUUID } from "crypto";
 
 export class InMemorySuppliersRepository implements SupplierRepository {
-    patch(id: string, data: Prisma.SupplierUpdateInput): Promise<Supplier | null> {
-        throw new Error("Method not implemented.");
-    }
-
     private items: Array<{
         id: string;
         social_name: string;
@@ -47,14 +41,12 @@ export class InMemorySuppliersRepository implements SupplierRepository {
         return this.items.filter(item => item.company_name === company_name && item.is_active);
     }
 
-    // Adiciona o método findManyBySocialName
     async findManyBySocialName(social_name: string) {
         return this.items.filter(item => item.social_name === social_name && item.is_active);
     }
 
     async findById(id: string) {
         const supplier = this.items.find(item => item.id === id);
-
         return supplier ? supplier : null;
     }
 
@@ -65,6 +57,21 @@ export class InMemorySuppliersRepository implements SupplierRepository {
 
         supplier.is_active = false;
         supplier.updatedAt = new Date();
+
+        return supplier;
+    }
+
+    async patch(id: string, data: Prisma.SupplierUpdateInput): Promise<Supplier | null> {
+        const supplier = await this.findById(id);
+
+        if (!supplier) {
+            return null;
+        }
+
+        Object.assign(supplier, {
+            ...data,
+            updatedAt: new Date(),
+        });
 
         return supplier;
     }

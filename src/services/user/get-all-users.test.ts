@@ -12,7 +12,6 @@ describe('Get All Users Service', () => {
   });
 
   it('should return all users', async () => {
-    // Cria alguns usuários no repositório
     const user1 = await userRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
@@ -27,14 +26,11 @@ describe('Get All Users Service', () => {
       role: 'MANAGER',
     });
 
-    // Executa o serviço para obter todos os usuários
     const result = await sut.execute();
     const users = result.users;
 
-    // Verifica se o número correto de usuários foi retornado
     expect(users).toHaveLength(2);
 
-    // Verifica se os usuários retornados são os mesmos que foram criados
     expect(users).toEqual(
       expect.arrayContaining([
         expect.objectContaining({

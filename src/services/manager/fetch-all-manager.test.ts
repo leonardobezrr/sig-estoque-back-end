@@ -11,11 +11,10 @@ describe('Fetch All Managers Service', () => {
   beforeEach(() => {
     managerRepository = new InMemoryManagersRepository();
     userRepository = new InMemoryUsersRepository();
-    sut = new FetchAllManagerService(managerRepository, userRepository);
+    sut = new FetchAllManagerService(managerRepository);
   });
 
   it('should be able to fetch all managers', async () => {
-    // Criando dois usuários e gerentes associados
     const user1 = await userRepository.create({
       name: 'Manager 1',
       email: 'manager1@example.com',

@@ -1,7 +1,7 @@
 // find-manager-by-id.ts
 import { Manager } from "@prisma/client";
 import { ManagerRepository } from "../../repositories/manager-repository";
-import { NoRecordsFoundError } from "../errors/no-records-found-error";  // Importa o erro
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 interface FindManagerByIdServiceRequest {
   id: string;

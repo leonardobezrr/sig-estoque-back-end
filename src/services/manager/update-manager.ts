@@ -1,9 +1,8 @@
-// update-manager.ts
 import { Manager } from "@prisma/client";
 import { ManagerRepository } from "../../repositories/manager-repository";
 import { UserRepository } from "../../repositories/user-repository";
 import { hash } from "bcryptjs";
-import { NoRecordsFoundError } from "../errors/no-records-found-error";  // Importa o erro
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 interface UpdateManagerServiceRequest {
   userId: string;
@@ -31,7 +30,7 @@ export class UpdateManagerService {
     const user = await this.userRepository.findById(userId);
 
     if (!user) {
-      throw new NoRecordsFoundError();  // Lança o erro específico
+      throw new NoRecordsFoundError();
     }
 
     if (password) {
@@ -56,7 +55,7 @@ export class UpdateManagerService {
     const oldManager = await this.managerRepository.findByUserId(user.id);
 
     if (!oldManager) {
-      throw new NoRecordsFoundError();  // Lança o erro se o gerente não for encontrado
+      throw new NoRecordsFoundError();
     }
 
     const updatedManager = await this.managerRepository.update({

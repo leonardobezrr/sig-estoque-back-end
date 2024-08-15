@@ -54,30 +54,28 @@ export class InMemoryUsersRepository implements UserRepository {
     return this.items;
   }
 
-  // Implementação do método update
-  async update(data: {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    password_hash: string;
-  }): Promise<User> {
+  async update(data: Prisma.UserCreateInput): Promise<User> {
+    if (!data.id) {
+        throw new Error("User ID is required for updating.");
+    }
+
     const userIndex = this.items.findIndex((item) => item.id === data.id);
 
     if (userIndex === -1) {
-      throw new Error("User not found.");
+        throw new Error("User not found.");
     }
 
     const updatedUser = {
-      ...this.items[userIndex],
-      name: data.name,
-      email: data.email,
-      role: data.role,
-      password_hash: data.password_hash,
+        ...this.items[userIndex],
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        password_hash: data.password_hash,
     };
 
     this.items[userIndex] = updatedUser;
 
     return updatedUser;
-  }
+}
+
 }

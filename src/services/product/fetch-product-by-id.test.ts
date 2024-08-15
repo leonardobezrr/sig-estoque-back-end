@@ -3,7 +3,6 @@ import { InMemoryProductsRepository } from "../../repositories/in-memory/in-memo
 import { FindProductByIdService } from "./find-product-by-id";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 
-// Supondo que você tem um fornecedor fictício com um ID para teste
 const dummySupplierId = 'dummy-supplier-id';
 
 let productRepository: InMemoryProductsRepository;
@@ -16,14 +15,13 @@ describe('Fetch Product By Id Service', () => {
     });
 
     it('should be able to fetch product by id', async () => {
-        // Criação de produto com supplierId
         const createdProduct = await productRepository.create({
             name: 'Product 1',
             description: 'Product 1 description',
             price: 100,
             quantity_in_stock: 10,
             batch: 'ABC123',
-            supplierId: dummySupplierId  // Adicionado supplierId
+            supplierId: dummySupplierId
         });
 
         const { product } = await sut.execute({

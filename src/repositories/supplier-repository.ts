@@ -6,5 +6,5 @@ export interface SupplierRepository {
     findManyBySocialName(socialName: string): Promise<Supplier[]>;
     findManyByCompanyName(companyName: string): Promise<Supplier[]>;
     findById(id: string): Promise<Supplier | null>;
-    patch(id: string, supplier: Prisma.SupplierUpdateInput): Promise<Supplier>;
+    patch(id: string, supplier: Prisma.SupplierUpdateInput): Promise<Supplier | null>;
   }

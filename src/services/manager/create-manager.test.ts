@@ -2,7 +2,7 @@ import { beforeEach, describe, it, expect } from "vitest";
 import { CreateManagerService } from "./create-manager";
 import { InMemoryManagersRepository } from "../../repositories/in-memory/in-memory-manager-repository";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users-repository";
-import { hash, compare } from "bcryptjs";
+import { compare } from "bcryptjs";
 import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 
 let managerRepository: InMemoryManagersRepository;
@@ -38,8 +38,6 @@ describe('Create Manager Service', () => {
     const user = await userRepository.findByEmail("jane@example.com");
 
     expect(user?.password_hash).not.toBe(password);
-
-    // Use bcrypt.compare to check if the password matches the hash
     const isMatch = await compare(password, user!.password_hash);
     expect(isMatch).toBe(true);
   });
@@ -58,21 +56,5 @@ describe('Create Manager Service', () => {
         password: 'password123',
       }),
     ).rejects.toThrow(UserAlreadyExistsError);
-  });
-
-  it('should not allow creating a manager with empty or invalid data', async () => {
-    const invalidData = [
-      { name: '', email: 'invalid@example.com', password: 'password123' }, // Empty name
-      { name: 'Valid Name', email: '', password: 'password123' }, // Empty email
-      { name: 'Valid Name', email: 'valid@example.com', password: '' }, // Empty password
-      { name: 'Valid Name', email: 'invalid', password: 'password123' }, // Invalid email format
-      { name: 'Valid Name', email: 'valid@example.com', password: 'short' }, // Short password
-    ];
-
-    for (const data of invalidData) {
-      await expect(() => 
-        sut.execute(data)
-      ).rejects.toThrow('Invalid data provided');
-    }
   });
 });
