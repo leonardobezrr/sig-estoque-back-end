@@ -24,11 +24,13 @@ Responsabilidade do Testador
 | Teste 09: Visualizar usuário | A9 - É possível visualizar os usuários  | Especificação OK.	 | Passed. |
 
 
-**AC002 – Employee**
+**AC002 – Produto**
 
 | Teste | Descrição | Especificação | Resultado |
 | :---- | :---- | :---- | :---- |
 | Teste 01: Cadastrar produto | A1 - Ao apertar o botão de login sem preencher o campo de email o usuário é informado da falta do mesmo e não consegue fazer o login | Especificação OK.	 | Passed. |
+| Teste 02: Excluir produto | A2 - É possível excluir um produto ao clicar no botão existente.| Especificação OK.	  | Passed. |
+
 
 
 
