@@ -16,6 +16,7 @@ Responsabilidade do Testador
 | Teste 01: Obrigatoriedade do campo email | A1 \- Ao apertar o botão de login sem preencher o campo de email o usuário é informado da falta do mesmo e não consegue fazer o login | Especificação OK.	 | Passed. |		 |
 | Teste 02: Obrigatoriedade do campo senha | A2 - Ao apertar o botão de login sem preencher o campo de senha o usuário é informado da falta do mesmo e não consegue fazer o login  | Especificação OK.	 | Passed. |
 | Teste 03: Validação email | A3 - Ao inserir um email inválido o usuário é informado do mesmo e não consegue efetuar o login | Especificação OK.	 | Passed. |
+| Teste 04: Tentativa de fazer login com usuário inexistente | A4 - Ao tentar fazer login com um email e senha válidos porém inexistentes no banco do sistema, o usuário não foi informado de nenhuma irregularidade | É preciso adicionar uma mensagem para informar o usuário que seus dados não existem no banco	 | Denied. |
 
 
 
