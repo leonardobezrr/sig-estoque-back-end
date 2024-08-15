@@ -14,6 +14,8 @@ Responsabilidade do Testador
 | Teste | Descrição | Especificação | Resultado |
 | :---- | :---- | :---- | :---- |
 | Teste 01: Obrigatoriedade do campo email | A1 \- Ao apertar o botão de login sem preencher o campo de email o usuário é informado da falta do mesmo e não consegue fazer o login | Especificação OK.	 | Passed. |		 |
+| Teste 02: Obrigatoriedade do campo senha | A2 - Ao apertar o botão de login sem preencher o campo de senha o usuário é informado da falta do mesmo e não consegue fazer o login  | Especificação OK.	 | Passed. |
+
 
 
 
