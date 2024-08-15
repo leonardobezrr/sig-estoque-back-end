@@ -9,9 +9,13 @@ export class InMemoryEmployeesRepository implements EmployeeRepository {
   async create(data: Prisma.EmployeeCreateInput): Promise<Employee> {
     const now = new Date();
 
+    if (!data.user.connect?.id) {
+      throw new Error("User ID is required");
+    }
+
     const employee = {
       id: randomUUID(),
-      userId: data.user.connect!.id,
+      userId: data.user.connect.id,
       createdAt: now,
       updatedAt: now,
     };
@@ -35,18 +39,21 @@ export class InMemoryEmployeesRepository implements EmployeeRepository {
     return employee || null;
   }
 
-  async update(employee: Employee): Promise<Employee | null> {
+  async update(employee: Employee): Promise<Employee> {
     const employeeIndex = this.items.findIndex((item) => item.id === employee.id);
-  
-    if (employeeIndex === -1) return null;
-  
+
+    if (employeeIndex === -1) {
+      throw new Error("Employee not found");
+    }
+
     const updatedEmployee = {
       ...this.items[employeeIndex],
       ...employee,
       updatedAt: new Date(),
     };
-  
+
     this.items[employeeIndex] = updatedEmployee;
+    
     return updatedEmployee;
   }
 }

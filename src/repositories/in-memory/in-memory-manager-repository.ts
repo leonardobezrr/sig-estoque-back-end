@@ -13,9 +13,13 @@ export class InMemoryManagersRepository implements ManagerRepository {
   async create(data: Prisma.ManagerCreateInput): Promise<Manager> {
     const now = new Date();
 
+    if (!data.user.connect?.id) {
+      throw new Error("User ID is required");
+    }
+
     const manager = {
       id: randomUUID(),
-      userId: data.user.connect!.id,
+      userId: data.user.connect.id,
       createdAt: now,
       updatedAt: now,
     };
@@ -41,16 +45,17 @@ export class InMemoryManagersRepository implements ManagerRepository {
 
   async update(manager: Manager): Promise<Manager> {
     const index = this.items.findIndex(item => item.id === manager.id);
-
+  
     if (index === -1) {
       throw new Error("Manager not found.");
     }
-
+  
     this.items[index] = {
+      ...this.items[index],
       ...manager,
       updatedAt: new Date(),
     };
-
+  
     return this.items[index];
   }
 }
