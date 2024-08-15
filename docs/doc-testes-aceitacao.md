@@ -29,3 +29,5 @@ Responsabilidade do Gerente
 | Teste | Providência | Tarefas/Tipo |
 | :---- | :---- | :---- |
 | AC001 Fazer login com usuário inexistente | Realizar a implementação de uma mensagem de erro. | Tarefa: Criar mensagem de erro . |
+| AC001 Erro de dados ao fazer login | Realizar a implementação de uma mensagem de erro ao tentar fazer login e identificar que algum dos dados está incorreto. | Tarefa: Criar mensagem de erro . |
+
