@@ -21,6 +21,7 @@ Responsabilidade do Testador
 | Teste 06: Editar usuário | A6 - É possível editar usuário clicando no botão existente  | Especificação OK.	 | Passed. |
 | Teste 07: Excluir usuário | A7 - É possível excluir usuário clicando no botão existente  | Especificação OK.	 | Passed. |
 | Teste 08: Cadastrar usuário | A8 - É possível cadastrar um novo usuário clicando no botão existente  | Especificação OK.	 | Passed. |
+| Teste 09: Visualizar usuário | A9 - É possível visualizar os usuários  | Especificação OK.	 | Passed. |
 
 
 **AC002 – Employee**
