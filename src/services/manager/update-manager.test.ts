@@ -3,7 +3,7 @@ import { hash, compare } from "bcryptjs";
 import { InMemoryManagersRepository } from "../../repositories/in-memory/in-memory-manager-repository";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/in-memory-users-repository";
 import { UpdateManagerService } from "./update-manager";
-import { NoRecordsFoundError } from "../errors/no-records-found-error";  // Importa o erro
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 let managersRepository: InMemoryManagersRepository;
 let usersRepository: InMemoryUsersRepository;
@@ -77,7 +77,6 @@ describe("Update Manager Service", () => {
     expect(updatedUser!.name).toBe("Jane Updated");
     expect(updatedUser!.email).toBe("janeupdated@example.com");
 
-    // Verifique se a senha não foi alterada
     const isPasswordCorrect = await compare("janespassword", updatedUser!.password_hash);
     expect(isPasswordCorrect).toBe(true);
   });

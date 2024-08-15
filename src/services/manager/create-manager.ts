@@ -2,8 +2,8 @@ import { Manager } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { ManagerRepository } from "../../repositories/manager-repository";
 import { UserRepository } from "../../repositories/user-repository";
-import { isEmail } from 'validator';  // Importação da biblioteca validator
-import { UserAlreadyExistsError } from "../errors/user-already-exists-error"; // Importar o erro personalizado
+import { isEmail } from 'validator'; 
+import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 
 interface CreateManagerServiceRequest {
   name: string;
@@ -26,33 +26,16 @@ export class CreateManagerService {
     email,
     password,
   }: CreateManagerServiceRequest): Promise<CreateManagerServiceResponse> {
-    // Validação de dados
-    if (!name || !email || !password) {
-      throw new Error('Invalid data provided');
-    }
-
-    if (!isEmail(email)) {
-      throw new Error('Invalid data provided');
-    }
-
-    if (password.length < 6) { // Ajuste conforme a política de senha
-      throw new Error('Invalid data provided');
-    }
-
-    // Verificar se o email já está em uso
     const userWithSameEmail = await this.userRepository.findByEmail(email);
 
     if (userWithSameEmail) {
-      throw new UserAlreadyExistsError(); // Lançar erro personalizado
+      throw new UserAlreadyExistsError();
     }
 
-    // Criptografar a senha
-    const password_hash = await hash(password, 10); // Uso de 10 como custo padrão
+    const password_hash = await hash(password, 10);
 
-    // Definir o papel do usuário
     const userRole = "MANAGER";
 
-    // Criar o usuário
     const user = await this.userRepository.create({
       name,
       email,
@@ -60,7 +43,6 @@ export class CreateManagerService {
       role: userRole,
     });
 
-    // Criar o manager
     const manager = await this.managerRepository.create({
       user: { connect: { id: user.id } },
     });

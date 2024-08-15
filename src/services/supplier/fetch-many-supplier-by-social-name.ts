@@ -1,5 +1,3 @@
-// fetch-many-supplier-by-social-name.ts
-
 import { Supplier } from "@prisma/client";
 import { SupplierRepository } from "../../repositories/supplier-repository";
 import { NoRecordsFoundError } from "../errors/no-records-found-error";

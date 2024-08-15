@@ -9,6 +9,7 @@ export class InMemoryProductsRepository implements ProductRepository {
 
     private items: Array<{
         id: string;
+        supplierId: string;
         name: string;
         description: string | null;
         price: number;
@@ -19,17 +20,18 @@ export class InMemoryProductsRepository implements ProductRepository {
         updatedAt: Date;
     }> = [];
 
-    async create(data: Prisma.ProductCreateInput) {
+    async create(data: Prisma.ProductCreateInput): Promise<Product> {
         const now = new Date();
 
         const product = {
             id: randomUUID(),
+            supplierId: data.supplierId,
             name: data.name,
             description: data.description ?? null,
             price: data.price,
             quantity_in_stock: data.quantity_in_stock ?? null,
             batch: data.batch ?? null,
-            is_active: true, // Set is_active to true by default
+            is_active: true,
             createdAt: now,
             updatedAt: now,
         };
@@ -39,7 +41,7 @@ export class InMemoryProductsRepository implements ProductRepository {
         return product;
     }
 
-    async findMany() {
+    async findMany(): Promise<Product[]> {
         return this.items.filter(item => item.is_active);
     }
 

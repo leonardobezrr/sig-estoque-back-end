@@ -12,7 +12,6 @@ export class InactivateProductService {
         const product = await this.productRepository.findById(productId);
 
         if (!product) {
-            //TODO: Create a custom error class
             throw new Error('Product not found');
         }
 

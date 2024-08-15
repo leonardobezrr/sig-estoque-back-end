@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryProductsRepository } from "../../repositories/in-memory/in-memory-products-repository";
 import { FetchAllProductService } from "./fetch-all-product";
 
-// Supondo que você tem um fornecedor fictício com um ID para teste
 const dummySupplierId = 'dummy-supplier-id';
 
 let productRepository: InMemoryProductsRepository;
@@ -21,7 +20,7 @@ describe('Fetch All Product Service', () => {
             price: 100,
             quantity_in_stock: 10,
             batch: 'ABC123',
-            supplierId: dummySupplierId  // Adicionado supplierId
+            supplierId: dummySupplierId
         });
 
         await productRepository.create({
@@ -30,7 +29,7 @@ describe('Fetch All Product Service', () => {
             price: 200,
             quantity_in_stock: 20,
             batch: 'DEF456',
-            supplierId: dummySupplierId  // Adicionado supplierId
+            supplierId: dummySupplierId
         });
 
         const result = await sut.execute();

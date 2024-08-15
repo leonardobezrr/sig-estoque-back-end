@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryManagersRepository } from "../../repositories/in-memory/in-memory-manager-repository";
 import { FindManagerByIdService } from "./find-manager-by-id";
-import { NoRecordsFoundError } from "../errors/no-records-found-error"; // Importa o erro
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 let managerRepository: InMemoryManagersRepository;
 let sut: FindManagerByIdService;
@@ -29,6 +29,6 @@ describe('Find Manager By Id Service', () => {
     it('should throw NoRecordsFoundError if manager is not found', async () => {
         await expect(() => 
             sut.execute({ id: 'non-existing-id' })
-        ).rejects.toThrow(NoRecordsFoundError);  // Verifica se o erro é o esperado
+        ).rejects.toThrow(NoRecordsFoundError);
     });
 });

@@ -1,6 +1,6 @@
 import { Supplier } from "@prisma/client";
 import { SupplierRepository } from "../../repositories/supplier-repository";
-import { NoRecordsFoundError } from "../errors/no-records-found-error"; // Importa a classe de erro personalizada
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 interface FindSupplierByIdServiceRequest {
     supplierId: string;
@@ -17,7 +17,6 @@ export class FindSupplierByIdService {
         const supplier = await this.supplierRepository.findById(supplierId);
 
         if (!supplier) {
-            // Lança o erro NoRecordsFoundError se o fornecedor não for encontrado
             throw new NoRecordsFoundError();
         }
 
