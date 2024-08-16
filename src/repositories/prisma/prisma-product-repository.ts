@@ -29,6 +29,16 @@ export class PrismaProductRepository implements ProductRepository {
         });
     }
 
+    async findManyByIds(ids: string[]) {
+        return prisma.product.findMany({
+            where: {
+                id: {
+                    in: ids
+                }
+            }
+        });
+    }
+
     async findById(id: string) {
         return prisma.product.findUnique({ where: { id } });
     }
@@ -46,6 +56,17 @@ export class PrismaProductRepository implements ProductRepository {
             data: {
                 is_active: false
             }
+        });
+    }
+
+    async reduceStock(productId: string, quantity: number): Promise<void> {
+        await prisma.product.update({
+            where: { id: productId },
+            data: {
+                quantity_in_stock: {
+                    decrement: quantity,
+                },
+            },
         });
     }
 }

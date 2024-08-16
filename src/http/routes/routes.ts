@@ -24,6 +24,7 @@ import { patchSupplier } from "../controllers/supplier/patch";
 import { fetchAllUsers } from "../controllers/user/fetch-all";
 import { deleteUser } from "../controllers/user/delete";
 import { findUserByid } from "../controllers/user/find-by-id";
+import { createSale } from "../controllers/sale/create";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -60,4 +61,7 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyByCompanyName);
     app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyBySocialName);
     app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, patchSupplier);
+
+    // sales
+    app.post("/sales", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createSale);
 }

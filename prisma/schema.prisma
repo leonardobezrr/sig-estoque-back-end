@@ -101,11 +101,11 @@ model Item {
   quantity Int
   value    Float
 
-  sale   Sale   @relation(fields: [saleId], references: [id])
-  saleId String
+  sale   Sale?   @relation(fields: [saleId], references: [id])
+  saleId String?
 
-  purchase   Purchase @relation(fields: [purchaseId], references: [id])
-  purchaseId String
+  purchase   Purchase? @relation(fields: [purchaseId], references: [id])
+  purchaseId String?
 
   product   Product @relation(fields: [productId], references: [id])
   productId String
