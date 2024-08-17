@@ -60,13 +60,15 @@ model Sale {
   userId String
   Item   Item[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("sales")
 }
 
 model Purchase {
   id        String @id @default(uuid())
   nf_number String
-  quantity  Int
   subTotal  Float  @default(0)
 
   user   User   @relation(fields: [userId], references: [id])
@@ -76,6 +78,9 @@ model Purchase {
   supplierId String
 
   Item Item[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("purchases")
 }
@@ -87,8 +92,6 @@ model Product {
   price             Float
   quantity_in_stock Int?
   batch             String?
-  supplier          Supplier @relation(fields: [supplierId], references: [id])
-  supplierId        String
   is_active         Boolean? @default(true)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
@@ -121,7 +124,6 @@ model Supplier {
   phone_number String
   cnpj         String
   Purchase     Purchase[]
-  Product      Product[]
 
   @@map("suppliers")
 }

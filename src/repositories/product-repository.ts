@@ -9,4 +9,5 @@ export interface ProductRepository {
     patch(id: string, data: Prisma.ProductUpdateInput): Promise<Product | null>
     inactivate(id: string): Promise<Product | null>
     reduceStock(productId: string, quantity: number): Promise<void>
+    increaseStock(productId: string, quantity: number): Promise<void>
 }

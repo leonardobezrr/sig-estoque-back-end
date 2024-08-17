@@ -27,6 +27,9 @@ import { findUserByid } from "../controllers/user/find-by-id";
 import { createSale } from "../controllers/sale/create";
 import { fetchAllSale } from "../controllers/sale/fetch-all";
 import { findSaleById } from "../controllers/sale/find-by-id";
+import { createPurchase } from "../controllers/purchase/create";
+import { fetchAllPurchase } from "../controllers/purchase/fetch-all";
+import { findPurchaseById } from "../controllers/purchase/find-by-id";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -68,4 +71,9 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.post("/sales", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createSale);
     app.get("/sales", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllSale);
     app.get("/sales/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findSaleById);
+
+    // purchases
+    app.post("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createPurchase);
+    app.get("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchase);
+    app.get("/purchases/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findPurchaseById);
 }

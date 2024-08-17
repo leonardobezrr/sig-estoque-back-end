@@ -3,8 +3,6 @@ import { InMemoryProductsRepository } from "../../repositories/in-memory/in-memo
 import { FindProductByIdService } from "./find-product-by-id";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 
-const dummySupplierId = 'dummy-supplier-id';
-
 let productRepository: InMemoryProductsRepository;
 let sut: FindProductByIdService;
 
@@ -21,7 +19,6 @@ describe('Fetch Product By Id Service', () => {
             price: 100,
             quantity_in_stock: 10,
             batch: 'ABC123',
-            supplierId: dummySupplierId
         });
 
         const { product } = await sut.execute({

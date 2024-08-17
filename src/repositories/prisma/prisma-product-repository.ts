@@ -69,4 +69,15 @@ export class PrismaProductRepository implements ProductRepository {
             },
         });
     }
+
+    async increaseStock(productId: string, quantity: number): Promise<void> {
+        await prisma.product.update({
+            where: { id: productId },
+            data: {
+                quantity_in_stock: {
+                    increment: quantity,
+                },
+            },
+        });
+    }
 }

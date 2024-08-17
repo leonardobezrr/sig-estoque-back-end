@@ -3,13 +3,8 @@ import { Prisma, Product } from "@prisma/client";
 import { randomUUID } from "crypto";
 
 export class InMemoryProductsRepository implements ProductRepository {
-    patch(id: string, data: Prisma.ProductUpdateInput): Promise<Product | null> {
-        throw new Error("Method not implemented.");
-    }
-
     private items: Array<{
         id: string;
-        supplierId: string;
         name: string;
         description: string | null;
         price: number;
@@ -25,7 +20,6 @@ export class InMemoryProductsRepository implements ProductRepository {
 
         const product = {
             id: randomUUID(),
-            supplierId: data.supplierId,
             name: data.name,
             description: data.description ?? null,
             price: data.price,
@@ -64,5 +58,21 @@ export class InMemoryProductsRepository implements ProductRepository {
         product.updatedAt = new Date();
 
         return product;
+    }
+
+    findManyByIds(ids: string[]): Promise<Product[]> {
+        throw new Error("Method not implemented.");
+    }
+
+    reduceStock(productId: string, quantity: number): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+
+    increaseStock(productId: string, quantity: number): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
+    
+    patch(id: string, data: Prisma.ProductUpdateInput): Promise<Product | null> {
+        throw new Error("Method not implemented.");
     }
 }

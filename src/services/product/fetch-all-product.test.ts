@@ -2,8 +2,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryProductsRepository } from "../../repositories/in-memory/in-memory-products-repository";
 import { FetchAllProductService } from "./fetch-all-product";
 
-const dummySupplierId = 'dummy-supplier-id';
-
 let productRepository: InMemoryProductsRepository;
 let sut: FetchAllProductService;
 
@@ -19,12 +17,7 @@ describe('Fetch All Product Service', () => {
             description: 'Product 1 description',
             price: 100,
             quantity_in_stock: 10,
-            batch: 'ABC123',
-            supplier: {
-                connect: {
-                    id: dummySupplierId
-                }
-            }
+            batch: 'ABC123'
         });
 
         await productRepository.create({
@@ -32,12 +25,7 @@ describe('Fetch All Product Service', () => {
             description: 'Product 2 description',
             price: 200,
             quantity_in_stock: 20,
-            batch: 'DEF456',
-            supplier: {
-                connect: {
-                    id: dummySupplierId
-                }
-            }
+            batch: 'DEF456'
         });
 
         const result = await sut.execute();

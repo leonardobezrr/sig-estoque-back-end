@@ -6,7 +6,6 @@ interface CreateProductServiceRequest {
     name: string;
     description: string;
     price: number;
-    supplierId: string;
     quantity_in_stock: number,
     batch: string
 }
@@ -23,28 +22,14 @@ export class CreateProductService {
         description,
         price,
         quantity_in_stock,
-        batch,
-        supplierId,
+        batch
     }: CreateProductServiceRequest): Promise<CreateProductServiceResponse> {
-        const supplierService = makeFindSupplierByIdService();
-
-        const { supplier } = await supplierService.execute({ supplierId });
-
-        if (!supplier) {
-            throw new Error('Supplier not found');
-        }
-
         const product = await this.productRepository.create({
             name,
             description,
             price,
             quantity_in_stock,
-            batch,
-            supplier: {
-                connect: {
-                    id: supplierId
-                }
-            }
+            batch
         });
 
         return { product };
