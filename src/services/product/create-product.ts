@@ -1,6 +1,5 @@
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../repositories/product-repository";
-import { makeFindSupplierByIdService } from "../factories/supplier/make-find-supplier-by-id-service";
 
 interface CreateProductServiceRequest {
     name: string;
