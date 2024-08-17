@@ -11,6 +11,12 @@ export class PrismaSaleRepository implements SaleRepository {
         return sale;
     }
 
+    async findMany() {
+        const sales = await prisma.sale.findMany();
+
+        return sales;
+    }
+
     async findById(id: string) {
         const sale = await prisma.sale.findUnique({
             where: {
@@ -21,8 +27,12 @@ export class PrismaSaleRepository implements SaleRepository {
         return sale;
     }
 
-    async findMany() {
-        const sales = await prisma.sale.findMany();
+    async findManyByUserId(userId: string) {
+        const sales = await prisma.sale.findMany({
+            where: {
+                userId,
+            },
+        });
 
         return sales;
     }
