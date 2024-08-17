@@ -54,6 +54,7 @@ model Sale {
   id        String   @id @default(uuid())
   sale_date DateTime @default(now())
   nf_number String
+  subTotal  Float    @default(0)
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
@@ -66,7 +67,7 @@ model Purchase {
   id        String @id @default(uuid())
   nf_number String
   quantity  Int
-  value     Float
+  subTotal  Float  @default(0)
 
   user   User   @relation(fields: [userId], references: [id])
   userId String

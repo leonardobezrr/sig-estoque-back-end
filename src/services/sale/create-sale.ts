@@ -13,7 +13,7 @@ interface CreateSaleServiceRequest {
 }
 
 interface CreateSaleServiceResponse {
-    sale: Sale;
+    newSale: Sale;
     items: Item[];
 }
 
@@ -75,10 +75,15 @@ export class CreateSaleService {
             })
         );
 
+        const subTotal = createdItems.reduce((acc, item) => {
+            return acc + item.value * item.quantity;
+        }, 0);
+
+        const newSale = await this.saleRepository.updateSubTotal(sale.id, subTotal);
+
         return {
-            sale,
+            newSale,
             items: createdItems
         };
     }
 }
-

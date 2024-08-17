@@ -1,7 +1,8 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
+import { SaleRepository } from "../sale-repository";
 
-export class PrismaSaleRepository {
+export class PrismaSaleRepository implements SaleRepository {
     async create(data: Prisma.SaleCreateInput) {
         const sale = await prisma.sale.create({
             data,
@@ -26,21 +27,13 @@ export class PrismaSaleRepository {
         return sales;
     }
 
-    async update(data: Prisma.SaleCreateInput) {
+    async updateSubTotal(id: string, data: number) {
         const sale = await prisma.sale.update({
             where: {
-                id: data.id,
-            },
-            data,
-        });
-
-        return sale;
-    }
-
-    async delete(id: string) {
-        const sale = await prisma.sale.delete({
-            where: {
                 id,
+            },
+            data: {
+                subTotal: data,
             },
         });
 
