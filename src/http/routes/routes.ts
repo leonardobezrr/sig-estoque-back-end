@@ -31,6 +31,8 @@ import { createPurchase } from "../controllers/purchase/create";
 import { fetchAllPurchase } from "../controllers/purchase/fetch-all";
 import { findPurchaseById } from "../controllers/purchase/find-by-id";
 import { fetchAllSaleByUserId } from "../controllers/sale/fetch-all-by-user-id";
+import { fetchAllPurchaseByUserId } from "../controllers/purchase/fetch-all-by-user-id";
+import { fetchAllPurchaseBySupplierId } from "../controllers/purchase/fetch-all-by-supplier-id";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -78,4 +80,6 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.post("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createPurchase);
     app.get("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchase);
     app.get("/purchases/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findPurchaseById);
+    app.get("/purchases/user/:userId", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchaseByUserId);
+    app.get("/purchases/supplier/:supplierId", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchaseBySupplierId);
 }

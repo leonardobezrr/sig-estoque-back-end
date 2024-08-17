@@ -11,6 +11,32 @@ export class PrismaPurchaseRepository implements PurchaseRepository {
         return purchase;
     }
 
+    async findMany() {
+        const purchases = await prisma.purchase.findMany();
+
+        return purchases;
+    }
+
+    async findManyByUserId(userId: string) {
+        const purchases = await prisma.purchase.findMany({
+            where: {
+                userId,
+            },
+        });
+
+        return purchases;
+    }
+
+    async findManyBySupplierId(supplierId: string) {
+        const purchases = await prisma.purchase.findMany({
+            where: {
+                supplierId,
+            },
+        });
+
+        return purchases;
+    }
+
     async findById(id: string) {
         const purchase = await prisma.purchase.findUnique({
             where: {
@@ -19,12 +45,6 @@ export class PrismaPurchaseRepository implements PurchaseRepository {
         });
 
         return purchase;
-    }
-
-    async findMany() {
-        const purchases = await prisma.purchase.findMany();
-
-        return purchases;
     }
 
     async updateSubTotal(id: string, data: number) {
