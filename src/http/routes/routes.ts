@@ -33,6 +33,7 @@ import { findPurchaseById } from "../controllers/purchase/find-by-id";
 import { fetchAllSaleByUserId } from "../controllers/sale/fetch-all-by-user-id";
 import { fetchAllPurchaseByUserId } from "../controllers/purchase/fetch-all-by-user-id";
 import { fetchAllPurchaseBySupplierId } from "../controllers/purchase/fetch-all-by-supplier-id";
+import { deleteSupplier } from "../controllers/supplier/delete";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -68,6 +69,7 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findSupplierById);
     app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyByCompanyName);
     app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyBySocialName);
+    app.delete("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, deleteSupplier);
     app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, patchSupplier);
 
     // sales
