@@ -2,7 +2,6 @@ import { Manager } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { ManagerRepository } from "../../repositories/manager-repository";
 import { UserRepository } from "../../repositories/user-repository";
-import { isEmail } from 'validator'; 
 import { UserAlreadyExistsError } from "../errors/user-already-exists-error";
 
 interface CreateManagerServiceRequest {
