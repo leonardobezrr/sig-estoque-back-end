@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { makePatchProductService } from "../../../services/factories/product/make-patch-product-service";
+import { NoRecordsFoundError } from "../../../services/errors/no-records-found-error";
 
 export async function patchProduct(request: FastifyRequest, reply: FastifyReply) {
     const patchProductBodySchema = z.object({
@@ -11,24 +12,32 @@ export async function patchProduct(request: FastifyRequest, reply: FastifyReply)
         batch: z.string().optional()
     });
 
-    const { id } = request.params as { id: string };
+    try {
+        const { id } = request.params as { id: string };
 
-    const { name, description, price, quantity_in_stock, batch } = patchProductBodySchema.parse(request.body);
+        const { name, description, price, quantity_in_stock, batch } = patchProductBodySchema.parse(request.body);
 
-    const patchProductService = makePatchProductService();
+        const patchProductService = makePatchProductService();
 
-    const { product } = await patchProductService.handle({
-        id,
-        data: {
-            name,
-            description,
-            price,
-            quantity_in_stock,
-            batch,
-        },
-    });
+        const { product } = await patchProductService.handle({
+            id,
+            data: {
+                name,
+                description,
+                price,
+                quantity_in_stock,
+                batch,
+            },
+        });
 
-    reply.code(200).send({
-        product,
-    });
+        reply.code(200).send({
+            product,
+        });
+    } catch (error) {
+        if (error instanceof NoRecordsFoundError) {
+            return reply.status(404).send({ message: 'No records found.' });
+        }
+
+        throw error;
+    }
 }
