@@ -1,5 +1,6 @@
 import { Supplier } from "@prisma/client";
 import { SupplierRepository } from "../../repositories/supplier-repository";
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 interface PatchSupplierServiceRequest {
     id: string;
@@ -22,7 +23,7 @@ export class PatchSupplierService {
         const supplierExists = await this.supplierRepository.findById(id);
 
         if (!supplierExists) {
-            throw new Error('Supplier not found');
+            throw new NoRecordsFoundError;
         }
 
         const supplier = await this.supplierRepository.patch(id, data);

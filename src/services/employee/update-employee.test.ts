@@ -41,7 +41,37 @@ describe("Update Employee Service", () => {
 
     expect(updatedEmployee).not.toBeNull();
     expect(updatedEmployee.employee).not.toBeNull();
+    expect(updatedEmployee.employee).toHaveProperty("id", employee.id);
+    expect(updatedEmployee.employee).toHaveProperty("userId", user.id);
+  });
 
+  it("should update an employee without changing the password", async () => {
+    const user = await userRepository.create({
+      name: "Jane Doe",
+      email: "jane.doe@example.com",
+      role: "EMPLOYEE",
+      password_hash: await hash("123456", 6),
+    });
+
+    const employee = await employeeRepository.create({
+      user: { connect: { id: user.id } },
+    });
+
+    const updatedEmployee = await sut.execute({
+      userId: user.id,
+      name: "Jane Updated",
+      email: "jane.updated@example.com",
+      // Não passando a senha
+    });
+
+    const updatedUser = await userRepository.findById(user.id);
+
+    expect(updatedUser).toHaveProperty("name", "Jane Updated");
+    expect(updatedUser).toHaveProperty("email", "jane.updated@example.com");
+    expect(updatedUser?.password_hash).toEqual(user.password_hash); // Verifica se a senha não foi alterada
+
+    expect(updatedEmployee).not.toBeNull();
+    expect(updatedEmployee.employee).not.toBeNull();
     expect(updatedEmployee.employee).toHaveProperty("id", employee.id);
     expect(updatedEmployee.employee).toHaveProperty("userId", user.id);
   });

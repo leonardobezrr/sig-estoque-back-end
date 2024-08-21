@@ -1,4 +1,5 @@
 import { SupplierRepository } from "../../repositories/supplier-repository";
+import { NoRecordsFoundError } from "../errors/no-records-found-error";
 
 interface DeleteSupplierServiceRequest {
   id: string;
@@ -11,7 +12,7 @@ export class DeleteSupplierService {
     const supplier = await this.supplierRepository.delete(id);
 
     if (!supplier) {
-      throw new Error("Supplier not found");
+      throw new NoRecordsFoundError;
     }
   }
 }
