@@ -18,19 +18,22 @@ export async function createSale(
         )
     });
 
-    const { nf_number, userId, items } = createSaleSchema.parse(request.body);
-
     try {
+        const { nf_number, userId, items } = createSaleSchema.parse(request.body);
+
         const createSaleService = makeCreateSaleService();
 
         await createSaleService.handle({
             nf_number,
             userId,
             items
-        })
-    } catch (error) {
-        throw error;
-    }
+        });
 
-    return reply.status(201).send();
+        return reply.status(201).send();
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            return reply.status(400).send({ message: 'Invalid request payload' });
+        }
+        return reply.status(500).send({ message: 'Internal Server Error' });
+    }
 }
