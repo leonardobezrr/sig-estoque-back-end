@@ -31,7 +31,7 @@ Responsabilidade do Testador
 | Teste 01: Cadastrar produto | A1 - Ao apertar o botão de login sem preencher o campo de email o usuário é informado da falta do mesmo e não consegue fazer o login | Especificação OK.	 | Passed. |
 | Teste 02: Excluir produto | A2 - É possível excluir um produto ao clicar no botão existente.| Especificação OK.	  | Passed. |
 | Teste 03: Editar produto | A3 - É possível editar um produto ao clicar no botão existente.| Especificação OK.	  | Passed. |
-| Teste 04: Editar produto | A4 - É possível visualizar os produtos existentes.| Especificação OK.	  | Passed. |
+| Teste 04: Visualizar produto | A4 - É possível visualizar os produtos existentes.| Especificação OK.	  | Passed. |
 
 
 
