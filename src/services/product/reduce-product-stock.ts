@@ -1,4 +1,5 @@
 import { ProductRepository } from "../../repositories/product-repository";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
 
 interface ReduceProductStockServiceRequest {
     productId: string;
@@ -12,7 +13,7 @@ export class ReduceProductStockService {
         const product = await this.productRepository.findById(productId);
 
         if (!product) {
-            throw new Error('Product not found');
+            throw new ResourceNotFoundError();
         }
 
         if (product.quantity_in_stock === null) {

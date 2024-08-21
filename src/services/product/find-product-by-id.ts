@@ -1,6 +1,7 @@
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../repositories/product-repository";
 import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InactiveError } from "../errors/inactive-error";
 
 interface FindProductByIdServiceRequest {
     productId: string;
@@ -23,7 +24,7 @@ export class FindProductByIdService {
         }
 
         if (!product.is_active) {
-            throw new Error('Product does not exist or is inactive');
+            throw new InactiveError();
         }
 
         return {
