@@ -51,6 +51,15 @@ Responsabilidade do Testador
 | Teste 03: Editar fornecedor | C3 - É possível editar um fornecedor ao clicar no botão de edição existente. | Especificação OK. | Passed. |
 | Teste 04: Visualizar fornecedor | C4 - É possível visualizar os fornecedores existentes. | Especificação OK. | Passed. |
 
+**AC005 – Registrar entradas**
+
+| Teste | Descrição | Especificação | Resultado |
+| :---- | :---- | :---- | :---- |
+| Teste 01: Registrar entrada de mercadoria | D1 - Ao registrar a entrada de uma mercadoria, são inseridos corretamente a data, o nome do produto e o CNPJ do fornecedor. | Especificação OK. | Passed. |
+
+
+
+
 
 
 
