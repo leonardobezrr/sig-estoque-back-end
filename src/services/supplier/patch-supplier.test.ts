@@ -1,44 +1,50 @@
-import { beforeEach, describe, it, expect } from "vitest";
-import { PatchSupplierService } from "./patch-supplier";
-import { InMemorySuppliersRepository } from "../../repositories/in-memory/in-memory-supplier-repository";
-import { NoRecordsFoundError } from "../errors/no-records-found-error";
+import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
+import { PatchSupplierService } from './patch-supplier';
+import { SupplierRepository } from '../../repositories/supplier-repository';
+import { Supplier } from '@prisma/client';
 
-let supplierRepository: InMemorySuppliersRepository;
-let sut: PatchSupplierService;
+describe('PatchSupplierService', () => {
+    // Mock supplierRepository
+    let supplierRepository: SupplierRepository;
+    let patchSupplierService: PatchSupplierService;
 
-describe('Patch Supplier Service', () => {
     beforeEach(() => {
-        supplierRepository = new InMemorySuppliersRepository();
-        sut = new PatchSupplierService(supplierRepository);
+        supplierRepository = {
+            findById: vi.fn() as Mock,
+            patch: vi.fn() as Mock,
+        } as unknown as SupplierRepository;
+
+        patchSupplierService = new PatchSupplierService(supplierRepository);
     });
 
-    it('should be able to patch an existing supplier', async () => {
-        const createdSupplier = await supplierRepository.create({
-            social_name: 'Supplier 1',
-            company_name: 'Company 1',
-            phone_number: '9876543210',
-            cnpj: '12345678000100',
+    it('should update supplier data if supplier exists', async () => {
+        const mockSupplier = { id: '1', social_name: 'Supplier 1' } as Supplier;
+        const updateData = { social_name: 'Updated Supplier' };
+
+        (supplierRepository.findById as Mock).mockResolvedValue(mockSupplier);
+        (supplierRepository.patch as Mock).mockResolvedValue({ ...mockSupplier, ...updateData });
+
+        const result = await patchSupplierService.handle({
+            id: '1',
+            data: updateData,
         });
 
-        const { supplier } = await sut.handle({
-            id: createdSupplier.id,
-            data: {
-                social_name: 'Updated Supplier 1',
-                company_name: 'Updated Company 1',
-            }
-        });
-
-        expect(supplier).toHaveProperty('id', createdSupplier.id);
-        expect(supplier).toHaveProperty('social_name', 'Updated Supplier 1');
-        expect(supplier).toHaveProperty('company_name', 'Updated Company 1');
+        expect(result.supplier).toEqual({ ...mockSupplier, ...updateData });
+        expect(supplierRepository.findById).toHaveBeenCalledWith('1');
+        expect(supplierRepository.patch).toHaveBeenCalledWith('1', updateData);
     });
 
-    it('should throw an error if the supplier does not exist', async () => {
-        await expect(sut.handle({
-            id: 'non-existing-id',
-            data: {
-                social_name: 'Non-existent Supplier',
-            }
-        })).rejects.toThrow(NoRecordsFoundError);
+    it('should throw an error if supplier does not exist', async () => {
+        (supplierRepository.findById as Mock).mockResolvedValue(null);
+
+        await expect(
+            patchSupplierService.handle({
+                id: '1',
+                data: { social_name: 'Updated Supplier' },
+            })
+        ).rejects.toThrow('Supplier not found');
+
+        expect(supplierRepository.findById).toHaveBeenCalledWith('1');
+        expect(supplierRepository.patch).not.toHaveBeenCalled();
     });
 });

@@ -1,61 +1,66 @@
-import { beforeEach, describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
 import { PatchProductService } from './patch-product';
-import { InMemoryProductsRepository } from '../../repositories/in-memory/in-memory-products-repository';
-import { ResourceNotFoundError } from '../errors/resource-not-found-error';
-import { InactiveError } from '../errors/inactive-error';
+import { ProductRepository } from '../../repositories/product-repository';
+import { Product } from '@prisma/client';
 
-let productRepository: InMemoryProductsRepository;
-let sut: PatchProductService;
+describe('PatchProductService', () => {
+    // Mock productRepository
+    let productRepository: ProductRepository;
+    let patchProductService: PatchProductService;
 
-describe('Patch Product Service', () => {
     beforeEach(() => {
-        productRepository = new InMemoryProductsRepository();
-        sut = new PatchProductService(productRepository);
+        productRepository = {
+            findById: vi.fn() as Mock,
+            patch: vi.fn() as Mock,
+        } as unknown as ProductRepository;
+
+        patchProductService = new PatchProductService(productRepository);
     });
 
-    it('should be able to update an existing product', async () => {
-        // Primeiro, cria um produto para atualizar
-        const createdProduct = await productRepository.create({
-            name: 'Product 1',
-            description: 'Product 1 description',
-            price: 100,
-            quantity_in_stock: 10,
-            batch: 'ABC123',
-            supplierId: 'supplier-123',
-            is_active: true,
+    it('should update product data if product exists and is active', async () => {
+        const mockProduct = { id: '1', name: 'Product 1', is_active: true } as Product;
+        const updateData = { name: 'Updated Product' };
+
+        (productRepository.findById as Mock).mockResolvedValue(mockProduct);
+        (productRepository.patch as Mock).mockResolvedValue({ ...mockProduct, ...updateData });
+
+        const result = await patchProductService.handle({
+            id: '1',
+            data: updateData,
         });
 
-        const { product } = await sut.handle({
-            id: createdProduct.id,
-            data: {
-                name: 'Updated Product 1',
-            },
-        });
-
-        expect(product?.name).toEqual('Updated Product 1');
+        expect(result.product).toEqual({ ...mockProduct, ...updateData });
+        expect(productRepository.findById).toHaveBeenCalledWith('1');
+        expect(productRepository.patch).toHaveBeenCalledWith('1', updateData);
     });
 
-    it('should throw ResourceNotFoundError if product does not exist', async () => {
+    it('should throw an error if product does not exist', async () => {
+        (productRepository.findById as Mock).mockResolvedValue(null);
+
         await expect(
-            sut.handle({ id: 'non-existing-id', data: { name: 'Non-existing Product' } })
-        ).rejects.toBeInstanceOf(ResourceNotFoundError);
+            patchProductService.handle({
+                id: '1',
+                data: { name: 'Updated Product' },
+            })
+        ).rejects.toThrow('Product not found');
+
+        expect(productRepository.findById).toHaveBeenCalledWith('1');
+        expect(productRepository.patch).not.toHaveBeenCalled();
     });
 
-    it('should throw InactiveError if the product is inactive', async () => {
-        // Crie o produto como inativo
-        const createdProduct = await productRepository.create({
-            name: 'Inactive Product',
-            description: 'This product is inactive',
-            price: 650,
-            quantity_in_stock: 8,
-            batch: 'XYZ456A',
-            supplierId: 'supplier-123',  // Certifique-se de fornecer todos os campos obrigatórios
-            is_active: false,
-        });
-    
-        // Atualize o produto e espere que o erro InactiveError seja lançado
+    it('should throw an error if product is inactive', async () => {
+        const mockProduct = { id: '1', name: 'Product 1', is_active: false } as Product;
+
+        (productRepository.findById as Mock).mockResolvedValue(mockProduct);
+
         await expect(
-            sut.handle({ id: createdProduct.id, data: { name: 'Updated Inactive Product' } })
-        ).rejects.toBeInstanceOf(InactiveError);
+            patchProductService.handle({
+                id: '1',
+                data: { name: 'Updated Product' },
+            })
+        ).rejects.toThrow('Product does not exist or is inactive');
+
+        expect(productRepository.findById).toHaveBeenCalledWith('1');
+        expect(productRepository.patch).not.toHaveBeenCalled();
     });
 });
