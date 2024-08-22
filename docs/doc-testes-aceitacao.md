@@ -42,6 +42,16 @@ Responsabilidade do Testador
 | Teste 03: Editar usuário | B3 - É possível editar um usuário ao clicar no botão de edição existente. | Especificação OK. | Passed. |
 | Teste 04: Visualizar usuário | B4 - É possível visualizar os usuários existentes. | Especificação OK. | Passed. |
 
+**AC004 – Fornecedores**
+
+| Teste | Descrição | Especificação | Resultado |
+| :---- | :---- | :---- | :---- |
+| Teste 01: Cadastrar fornecedor | C1 - Ao apertar o botão de cadastro sem preencher o campo de email, o usuário é informado da falta do mesmo e não consegue cadastrar o fornecedor. | Especificação OK. | Passed. |
+| Teste 02: Excluir fornecedor | C2 - É possível excluir um fornecedor ao clicar no botão de exclusão existente. | Especificação OK. | Passed. |
+| Teste 03: Editar fornecedor | C3 - É possível editar um fornecedor ao clicar no botão de edição existente. | Especificação OK. | Passed. |
+| Teste 04: Visualizar fornecedor | C4 - É possível visualizar os fornecedores existentes. | Especificação OK. | Passed. |
+
+
 
 
 
