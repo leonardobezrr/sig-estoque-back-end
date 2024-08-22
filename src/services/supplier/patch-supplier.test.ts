@@ -42,7 +42,7 @@ describe('PatchSupplierService', () => {
                 id: '1',
                 data: { social_name: 'Updated Supplier' },
             })
-        ).rejects.toThrow('Supplier not found');
+        ).rejects.toThrow('No records found.');
 
         expect(supplierRepository.findById).toHaveBeenCalledWith('1');
         expect(supplierRepository.patch).not.toHaveBeenCalled();

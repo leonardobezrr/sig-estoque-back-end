@@ -42,7 +42,7 @@ describe('PatchProductService', () => {
                 id: '1',
                 data: { name: 'Updated Product' },
             })
-        ).rejects.toThrow('Product not found');
+        ).rejects.toThrow('Resource not found');
 
         expect(productRepository.findById).toHaveBeenCalledWith('1');
         expect(productRepository.patch).not.toHaveBeenCalled();
