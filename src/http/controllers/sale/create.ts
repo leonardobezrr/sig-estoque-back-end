@@ -34,6 +34,7 @@ export async function createSale(
         if (error instanceof z.ZodError) {
             return reply.status(400).send({ message: 'Invalid request payload' });
         }
+        console.error(error);
         return reply.status(500).send({ message: 'Internal Server Error' });
     }
 }
