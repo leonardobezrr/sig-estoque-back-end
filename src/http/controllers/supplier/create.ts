@@ -10,18 +10,30 @@ export async function createSupplier(request: FastifyRequest, reply: FastifyRepl
         cnpj: z.string(),
     });
 
-    const { social_name, company_name, phone_number, cnpj } = createSupplierBodySchema.parse(request.body);
+    try {
+        const { social_name, company_name, phone_number, cnpj } = createSupplierBodySchema.parse(request.body);
 
-    const CreateSupplierService = makeCreateSupplierService();
+        const CreateSupplierService = makeCreateSupplierService();
 
-    const { supplier } = await CreateSupplierService.handle({
-        social_name,
-        company_name,
-        phone_number,
-        cnpj
-    });
+        const { supplier } = await CreateSupplierService.handle({
+            social_name,
+            company_name,
+            phone_number,
+            cnpj
+        });
 
-    reply.code(201).send({
-        supplier
-    });
+        reply.code(201).send({
+            supplier
+        });
+    } catch (error) {
+        console.error(error); // Log do erro
+
+        // Se o erro for uma instância de ZodError, retorne um status 400
+        if (error instanceof z.ZodError) {
+            reply.code(400).send({ message: 'Invalid request data' });
+        } else {
+            // Em outros casos, retorne um status 500
+            reply.code(500).send({ message: 'Internal Server Error' });
+        }
+    }
 }

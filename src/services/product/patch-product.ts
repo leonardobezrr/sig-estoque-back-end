@@ -1,5 +1,7 @@
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../repositories/product-repository";
+import { ResourceNotFoundError } from "../errors/resource-not-found-error";
+import { InactiveError } from "../errors/inactive-error";
 
 interface PatchProductServiceRequest {
     id: string;
@@ -23,11 +25,11 @@ export class PatchProductService {
         const productExists = await this.productRepository.findById(id);
 
         if (!productExists) {
-            throw new Error('Product not found');
+            throw new ResourceNotFoundError();
         }
 
         if (!productExists.is_active) {
-            throw new Error('Product does not exist or is inactive');
+            throw new InactiveError();
         }
 
         const product = await this.productRepository.patch(id, data);

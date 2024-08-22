@@ -75,4 +75,15 @@ export class InMemorySuppliersRepository implements SupplierRepository {
 
         return supplier;
     }
+
+    async delete(id: string): Promise<Supplier | null> {
+        const supplierIndex = this.items.findIndex(item => item.id === id);
+
+        if (supplierIndex === -1) {
+            return null;
+        }
+
+        const [deletedSupplier] = this.items.splice(supplierIndex, 1);
+        return deletedSupplier;
+    }
 }

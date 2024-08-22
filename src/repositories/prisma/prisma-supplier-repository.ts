@@ -15,6 +15,12 @@ export class PrismaSupplierRepository implements SupplierRepository {
         return prisma.supplier.findMany();
     }
 
+    async delete(id: string) {
+        return prisma.supplier.delete({
+            where: { id },
+        });
+    }
+
     async findManyBySocialName(socialName: string) {
         return prisma.supplier.findMany({
             where: {

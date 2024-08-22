@@ -24,6 +24,16 @@ import { patchSupplier } from "../controllers/supplier/patch";
 import { fetchAllUsers } from "../controllers/user/fetch-all";
 import { deleteUser } from "../controllers/user/delete";
 import { findUserByid } from "../controllers/user/find-by-id";
+import { createSale } from "../controllers/sale/create";
+import { fetchAllSale } from "../controllers/sale/fetch-all";
+import { findSaleById } from "../controllers/sale/find-by-id";
+import { createPurchase } from "../controllers/purchase/create";
+import { fetchAllPurchase } from "../controllers/purchase/fetch-all";
+import { findPurchaseById } from "../controllers/purchase/find-by-id";
+import { fetchAllSaleByUserId } from "../controllers/sale/fetch-all-by-user-id";
+import { fetchAllPurchaseByUserId } from "../controllers/purchase/fetch-all-by-user-id";
+import { fetchAllPurchaseBySupplierId } from "../controllers/purchase/fetch-all-by-supplier-id";
+import { deleteSupplier } from "../controllers/supplier/delete";
 
 export async function protectedRoutes(app: FastifyInstance) {
     app.addHook("onRequest", verifyJWT);
@@ -59,5 +69,19 @@ export async function protectedRoutes(app: FastifyInstance) {
     app.get("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findSupplierById);
     app.get("/suppliers/company-name/:companyName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyByCompanyName);
     app.get("/suppliers/social-name/:socialName", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchManyBySocialName);
+    app.delete("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, deleteSupplier);
     app.patch("/suppliers/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, patchSupplier);
+
+    // sales
+    app.post("/sales", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createSale);
+    app.get("/sales", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllSale);
+    app.get("/sales/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findSaleById);
+    app.get("/sales/user/:userId", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllSaleByUserId);
+
+    // purchases
+    app.post("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, createPurchase);
+    app.get("/purchases", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchase);
+    app.get("/purchases/:id", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, findPurchaseById);
+    app.get("/purchases/user/:userId", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchaseByUserId);
+    app.get("/purchases/supplier/:supplierId", { onRequest: [verifyUserRole(["MANAGER", "EMPLOYEE"])] }, fetchAllPurchaseBySupplierId);
 }
