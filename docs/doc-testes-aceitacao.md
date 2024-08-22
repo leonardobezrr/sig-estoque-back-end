@@ -57,6 +57,13 @@ Responsabilidade do Testador
 | :---- | :---- | :---- | :---- |
 | Teste 01: Registrar entrada de mercadoria | D1 - Ao registrar a entrada de uma mercadoria, são inseridos corretamente a data, o nome do produto e o CNPJ do fornecedor. | Especificação OK. | Passed. |
 
+**AC006 – Registrar saídas**
+
+| Teste | Descrição | Especificação | Resultado |
+| :---- | :---- | :---- | :---- |
+| Teste 01: Registrar saída de mercadoria | E1 - Ao registrar a saída de uma mercadoria, são inseridos corretamente a data, o nome do produto e o CNPJ do fornecedor. | Especificação OK. | Passed. |
+
+
 
 
 
