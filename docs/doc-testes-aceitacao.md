@@ -33,6 +33,16 @@ Responsabilidade do Testador
 | Teste 03: Editar produto | A3 - É possível editar um produto ao clicar no botão existente.| Especificação OK.	  | Passed. |
 | Teste 04: Visualizar produto | A4 - É possível visualizar os produtos existentes.| Especificação OK.	  | Passed. |
 
+**AC003 – Usuário**
+
+| Teste | Descrição | Especificação | Resultado |
+| :---- | :---- | :---- | :---- |
+| Teste 01: Cadastrar usuário | B1 - Ao apertar o botão de cadastro sem preencher o campo de email, o usuário é informado da falta do mesmo e não consegue se cadastrar | Especificação OK. | Passed. |
+| Teste 02: Excluir usuário | B2 - É possível excluir um usuário ao clicar no botão de exclusão existente. | Especificação OK. | Passed. |
+| Teste 03: Editar usuário | B3 - É possível editar um usuário ao clicar no botão de edição existente. | Especificação OK. | Passed. |
+| Teste 04: Visualizar usuário | B4 - É possível visualizar os usuários existentes. | Especificação OK. | Passed. |
+
+
 
 
 
